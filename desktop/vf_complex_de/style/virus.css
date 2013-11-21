@@ -1,0 +1,92 @@
+#doorVirus{
+	width: 472px;
+	height: 720px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: url(media/door_virus.png);
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+#doorHolderVirus{
+	width: 472px;
+	height: 720px;
+	position: absolute;
+	top: 50px;
+	left: 35px;
+	
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+#bgVirus{
+				top: -149px;
+				left: -116px;
+				width:768px;
+				height: 1200px;
+				position: absolute;
+				background: url(media_vf_virus/bg.png);
+			}
+			#viruses{
+				top: 0px;
+				left: 0px;
+				width:768px;
+				height: 1200px;
+				position: absolute;
+			}
+			#virus_1{
+				top: 230px;
+				left: 150px;
+				width: 308px;
+				height: 287px;
+				position: absolute;
+				background: url(media_vf_virus/virus_1.png);
+				
+			}
+			#virus_2{
+				top: 100px;
+				left: 150px;
+				width: 221px;
+				height: 185px;
+				position: absolute;
+				background: url(media_vf_virus/virus_2.png);
+				
+			}
+
+			#virus_3{
+				top: 100px;
+				left: 350px;
+				width: 274px;
+				height: 288px;
+				position: absolute;
+				background: url(media_vf_virus/virus_3.png);
+			}
+
+			#virus_4{
+				top: 100px;
+				left: 350px;
+				width: 274px;
+				height: 288px;
+				position: absolute;
+				background: url(media_vf_virus/virus_3.png);
+			}
+
+			#virus_5{
+				top: 100px;
+				left: 350px;
+				width: 274px;
+				height: 288px;
+				position: absolute;
+				background: url(media_vf_virus/virus_3.png);
+			}
+
+			#maskVirus{
+				top: -1448px;
+				left: -173px;
+				width: 1536px;
+				height: 2400px;
+				position: absolute;
+				background: url(media/vodafone_complex_mask.png);
+
+			}

@@ -1,0 +1,115 @@
+function init(){
+				audioTag = $('#track1')[0];
+				setUpDivs();
+				
+				console.log(audioTag);
+			}
+			
+			var audioTag;
+			var trackPlaying = false;
+			var audioLoaded = false;
+			var tracks = [
+				{name:'sonar', start:.2, end:.8},
+
+				];	
+
+		
+			function setUpDivs () {
+				TweenMax.set($('#sliding_title1'), {scale:.9});
+				//TweenMax.set($('#fadeInCopy'), {scale:1.05});
+				TweenMax.set($('#sliding_title2'), {scale:.9});
+				$('#pageOneMask').click(function(){
+					moveOnToLastPage();
+
+				})
+
+				$('#touchAreaOne').click(function(e){
+					readyAudio(e);
+					$('#partOne').hide();
+					$('#partTwo').show();
+					$('#touchAreaOne').hide();
+					startRadar();
+					//sonarTimer = setInterval(function(){playSonar();},1000);	
+					playSonar();
+				})
+
+				$('#click_to_store').click(function(){
+					window.open("https://play.google.com/store/apps/details?id=com.wsandroid.suite.vodaemea&hl=en","_blank");
+				})
+
+				
+			}
+
+			function readyAudio(e){
+				audioTag.addEventListener('canplaythrough',function(e){	
+					
+					console.log('canplaythrough');
+					//console.log(audioTag);
+				
+					//playSongs();
+				},true);
+				audioTag.play();
+				audioTag.pause();
+			}
+
+			function moveOnToLastPage(){
+				console.log('click');
+					$('#pageOne').hide();
+					TweenMax.to($('#fadeInCopy'),2,{opacity:1,});
+					TweenMax.set($('#sliding_title2'),{opacity:1});
+					TweenMax.to($('#sliding_title2'),1,{x:530, scale:1, y:100, ease:Power1.easeOut});
+					$('#vodafoneInfo').show();
+					clearInterval(rotationTimer);
+
+			}
+
+
+			function startRadar () {
+				TweenMax.to($('#radarBar'),2,{rotation:"360_cw", ease:Linear.easeNone, repeat:-1, });
+				TweenMax.to($('#radarHolder'),2,{rotation:"360_cw", ease:Linear.easeNone, repeat:-1,});
+
+			
+			   rotationTimer = setInterval(function(){monitorTransform();}, 100);
+		   
+			}
+
+			function playSonar(){
+				console.log('play');
+				
+			}
+
+			function monitorTransform(){
+				var transform = $("#radarBar")[0]._gsTransform;
+			            var x = transform.x;
+			            var rotation = transform.rotation;
+			    //console.log(rotation);
+				checkRotation(rotation);
+			}
+			var rotationCounter = 0;
+			function checkRotation(rotation){
+				if (rotation > 5.2 && rotation < 5.7){
+
+					audioTag.play();
+					TweenMax.to($('#radarBox'),.1,{opacity:1});
+					console.log(rotation);
+					
+				} else {
+					TweenMax.to($('#radarBox'),.8,{opacity:0});
+					bleepPlayed = false;
+				}
+
+				if (rotation > 6){
+					rotationCounter++;
+					console.log(rotationCounter);
+				}
+
+				//console.log(rotation);
+
+				if (rotationCounter > 3){
+					moveOnToLastPage();
+				}
+			}
+
+			$(function () {
+				init();
+			})
