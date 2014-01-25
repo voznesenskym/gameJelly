@@ -1,0 +1,27 @@
+# The follownig is a list of files and extensions that will be ignored
+# by Git. DO NOT alter or move this file.
+
+# Ignore the following directories
+
+.DS_Store
+Temp
+obj
+Library
+
+# Ignore the following file extensions
+
+*.tmpproj
+*.csproj
+*.unityproj
+*.pidb
+*.sln
+*.suo
+*.user
+*.userprefs
+*.vcproject
+*.exe
+*.db
+No\ Name.mat
+
+#Ignore VIM files
+*~
