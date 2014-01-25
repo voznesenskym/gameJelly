@@ -12,7 +12,7 @@ public class ForcePush : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKey(KeyCode.E))
+		if(Input.GetMouseButton(0))
 		{
 			Ray ray = Cam3D.ScreenPointToRay(new Vector3(Screen.width/2 + Screen.width/4, Screen.height/2, 0));
 
