@@ -1,0 +1,194 @@
+			#wrapperRadar{
+				width: 768px;
+				height: 1200px;
+				position: absolute;
+				top: -199px;
+				left: -119px;
+			}
+
+			
+
+			
+			#pageOne{
+				width: 768px;
+				height: 1200px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				
+				background-repeat: no-repeat;
+				overflow: hidden;
+			}
+
+			#doorRadar{
+				width: 472px;
+				height: 720px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: url(media/door_find.png);
+				background-repeat: no-repeat;
+				overflow: hidden;
+			}
+
+			#doorHolderRadar{
+				width: 472px;
+				height: 720px;
+				position: absolute;
+				top: 46px;
+				left: 35px;
+				
+				background-repeat: no-repeat;
+				overflow: hidden;
+			}
+
+			#pageOneMask{
+				width: 768px;
+				height: 1200px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: url(media_vf_radar/mask.png);
+				background-repeat: no-repeat;
+				overflow: hidden;
+			}
+
+			#touchAreaOne{
+				width: 384px;
+				height: 600px;
+				position: absolute;
+				top: 85px;
+				left: 66px;
+				
+				background-repeat: no-repeat;
+				overflow: hidden;
+				
+			}
+
+			#touchAreaTwo{
+				width: 384px;
+				height: 600px;
+				position: absolute;
+				top: 85px;
+				left: 66px;
+				
+				background-repeat: no-repeat;
+				overflow: hidden;
+				display: none;
+			}
+
+			#touchAreaThree{
+				width: 384px;
+				height: 600px;
+				position: absolute;
+				top: 85px;
+				left: 66px;
+				
+				background-repeat: no-repeat;
+				overflow: hidden;
+				
+			}
+			#partOne{
+				width: 768px;
+				height: 1200px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: url(media_vf_radar/de_page_one_copy.png);
+				background-repeat: no-repeat;
+				overflow: hidden;
+			}
+
+			#partTwo{
+				width: 768px;
+				height: 1200px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: url(media_vf_radar/bg2_2.jpg);
+				background-repeat: no-repeat;
+				display: none;
+				overflow: hidden;
+			}
+
+
+
+			
+			#radar{
+				width: 522px;
+				height: 800px;
+				position: absolute;
+				top: 147px;
+				left: -72px;
+				display: none;
+				
+				
+				overflow: hidden;
+			}
+
+			#radarBar{
+				width: 922px;
+				height: 922px;
+				position: absolute;
+				top: 147px;
+				left: -72px;
+				background: url(media_vf_radar/radar.png);
+				background-repeat: no-repeat;
+				
+			}
+			
+
+			#radarBox{
+				width: 156px;
+				height: 209px;
+				position: absolute;
+				top: 406px;
+				left: 184px;
+				background: url(media_vf_radar/phone.png);
+				background-repeat: no-repeat;
+				opacity: 0;
+				z-index: 10;
+			}
+
+			#vodafoneInfo{
+				width: 768px;
+				height: 1200px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: url(media_vf_radar/Vodafone_Protect_V3.jpg);
+				background-repeat: no-repeat;
+				display: none;
+			}
+
+			#vfTitle{
+				width: 768px;
+				height: 97px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				background: url(media_vf_radar/txt_vodafone_protect.png);
+				background-repeat: no-repeat;
+
+			}
+
+			#radarCopy{
+				width: 534px;
+				height: 95px;
+				position: absolute;
+				top: 90px;
+				left: 169px;
+				background: url(media_vf_radar/de_top_copy.png);
+				background-repeat: no-repeat;
+
+			}
+
+			#radarMask{
+				top: -468px;
+				left: -822px;
+				width: 1536px;
+				height: 2400px;
+				position: absolute;
+				background: url(media/vodafone_complex_mask.png);
+			}
+			

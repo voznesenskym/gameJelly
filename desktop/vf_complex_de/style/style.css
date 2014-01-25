@@ -1,0 +1,231 @@
+html{
+	-webkit-tap-highlight-color:transparent;
+}
+
+body{
+	background: white;
+}
+
+#mainWrapper{
+	top: 0px;
+	left: 0px;
+	width: 768px;
+	height: 1200px;
+	position: absolute;
+	
+	overflow: hidden;
+}
+
+#wrapperHome{
+	top: 0px;
+	left: 0px;
+	width: 768px;
+	height: 1200px;
+	position: absolute;
+	
+	overflow: hidden;
+}
+
+#bg{
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	
+	
+}
+#touchArea{
+	top: -598px;
+	left: -383px;
+	width: 1536px;
+	height: 2400px;
+	position: absolute;
+	
+	
+}
+
+#touchAreaMask{
+	top: -43px;
+	left: 0px;
+	width: 1536px;
+	height: 2400px;
+	position: absolute;
+	background: url(media/vodafone_complex_mask.png);
+	
+}
+
+#touchTopRight{
+	top: 430px;
+	left: 825px;
+	width: 540px;
+	height: 850px;
+	
+	position: absolute;
+	float: right;
+	overflow: hidden;
+}
+
+#TopRight{
+	top: 430px;
+	left: 714px;
+	width: 768px;
+	height: 850px;
+	
+	position: absolute;
+	float: right;
+	overflow: hidden;
+}
+
+#touchTopLeft{
+	top: 430px;
+	left: 165px;
+	width: 540px;
+	height: 850px;
+	
+	position: absolute;
+	float: right;
+	overflow: hidden;
+}
+
+#touchBottomRight{
+	top: 1410px;
+	left: 821px;
+	width: 540px;
+	height: 850px;
+	
+	position: absolute;
+	float: right;
+	overflow: hidden;
+}
+
+#touchBottomLeft{
+	top: 1410px;
+	left: 168px;
+	width: 540px;
+	height: 850px;
+	
+	position: absolute;
+	float: right;
+	overflow: hidden;
+}
+
+#sliding_title1{
+	width: 768px;
+	height: 1200px;
+	position: absolute;
+	top: -145px;
+	left: -540px;
+	
+	z-index: 1;
+	background: url(media_vf_radar/slide_in_shape.png);
+	background-repeat: no-repeat;
+}
+
+#sliding_title2{
+	width: 768px;
+	height: 1200px;
+	position: absolute;
+	top: -145px;
+	left: -540px;
+	
+	z-index: 1;
+	background: url(media_vf_radar/slide_in_shape.png);
+	background-repeat: no-repeat;
+}
+
+#fadeInCopy{
+	width: 768px;
+	height: 567px;
+	position: absolute;
+	top: 92px;
+	left: 33px;
+	opacity: 0;
+	background: url(media/final_screen_txt.png);
+	background-repeat: no-repeat;
+	
+}
+
+#click_to_store{
+	width: 256px;
+	height: 75px;
+	position: absolute;
+	top: 328px;
+	left: 36px;
+	background-repeat: no-repeat;
+	z-index: 3;
+}
+
+#backToHome{
+	width: 265px;
+	height: 75px;
+	position: absolute;
+	top: 445px;
+	left: 29px;
+	background-repeat: no-repeat;
+	z-index: 3;
+}
+#backBtn{
+	width: 116px;
+	height: 83px;
+	position: absolute;
+	top: 369px;
+	left: 590px;
+	background: url(media/back_btn.png);
+	background-repeat: no-repeat;
+	z-index: 3;
+	opacity: 0;
+}
+
+#radarCopy1{
+	width: 534px;
+	height: 127px;
+	position: absolute;
+	top: 81px;
+	left: 166px;
+	background: url(copy/radar_01.png);
+	background-repeat: no-repeat;
+	display: none;
+}
+
+#radarCopy2{
+	width: 534px;
+	height: 95px;
+	position: absolute;
+	top: 90px;
+	left: 169px;
+	background: url(copy/radar_02.png);
+	background-repeat: no-repeat;
+	display: none;
+}
+#protectCopy{
+	width: 559px;
+	height: 95px;
+	position: absolute;
+	top: 90px;
+	left: 178px;
+	background: url(copy/protect_01.png);
+	background-repeat: no-repeat;
+	display: none;
+}
+#virusCopy{
+	width: 534px;
+	height: 126px;
+	position: absolute;
+	top: 92px;
+	left: 175px;
+	background: url(copy/virus_01.png);
+	background-repeat: no-repeat;
+	display: none;
+}
+
+#wipeCopy{
+	width: 534px;
+	height: 124px;
+	position: absolute;
+	top: 92px;
+	left: 174px;
+	background: url(copy/wipe_01.png);
+	background-repeat: no-repeat;
+	display: none;
+}

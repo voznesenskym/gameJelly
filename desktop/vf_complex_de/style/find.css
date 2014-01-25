@@ -1,0 +1,21 @@
+#doorFinder{
+	width: 472px;
+	height: 720px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: url(media/door_lock.png);
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+#doorHolderFinder{
+	width: 472px;
+	height: 720px;
+	position: absolute;
+	top: 73px;
+	left: 32px;
+	
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
