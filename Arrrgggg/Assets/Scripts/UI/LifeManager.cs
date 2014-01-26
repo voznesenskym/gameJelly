@@ -42,26 +42,17 @@ public class LifeManager : Singleton<LifeManager> {
 
 		if (_leftPlayerId == id || _rightPlayerId == id) return;
 
-		if (!IsRightPlayer) {
-			_leftPlayerId = id;
-		} else {
-			_rightPlayerId = id;
-		}
-
-		IsRightPlayer = true;
+		//view.RPC("SetPlayer", PhotonTargets.AllBuffered, {IsRightPlayer, id});
 	}
 
-	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-	{
-		if (stream.isWriting)
-		{
-			//We own this player: send the others our data
-			stream.SendNext(IsRightPlayer);
-		}
-		else
-		{
-			//Network player, receive data
-			IsRightPlayer = (bool)stream.ReceiveNext();
+	[RPC]
+	public void SetPlayer(bool right, int id) {
+			if (right) {
+				_rightPlayerId = id;
+			IsRightPlayer = true;
+		} else {
+				_leftPlayerId = id;
+			IsRightPlayer = false;
 		}
 	}
 }
