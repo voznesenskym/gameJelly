@@ -32,7 +32,7 @@ public class AARRRR : Photon.MonoBehaviour {
 		_lifetimeTimer += Time.deltaTime;
 		
 		if (_lifetimeTimer > lifetime) {
-			PhotonNetwork.Destroy(gameObject);
+			if (gameObject) PhotonNetwork.Destroy(gameObject);
 		}
 	}
 	
@@ -51,6 +51,6 @@ public class AARRRR : Photon.MonoBehaviour {
 
 	[RPC]
 	void RemoveBullet() {
-		PhotonNetwork.Destroy(gameObject);
+		if (gameObject) PhotonNetwork.Destroy(gameObject);
 	}
 }

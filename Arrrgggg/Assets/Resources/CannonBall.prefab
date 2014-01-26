@@ -91,7 +91,7 @@ MonoBehaviour:
   prefixBackup: -1
   observed: {fileID: 400000}
   synchronization: 1
-  onSerializeTransformOption: 3
+  onSerializeTransformOption: 0
   onSerializeRigidBodyOption: 2
   instantiationId: -1
 --- !u!135 &13500000

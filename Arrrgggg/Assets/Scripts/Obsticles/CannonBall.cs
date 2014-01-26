@@ -13,7 +13,7 @@ public class CannonBall : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		Instantiate(cannonHitParticle, collision.contacts[0].point, Quaternion.identity);
-		PhotonNetwork.Destroy(_gameObject);
+		if (_gameObject) PhotonNetwork.Destroy(_gameObject);
 		GameObject other = collision.gameObject;
 		if (other.CompareTag("PlayerCollider")) {
 			Debug.Log("Hit Player");

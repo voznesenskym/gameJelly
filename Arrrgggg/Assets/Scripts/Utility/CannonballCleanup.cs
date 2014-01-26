@@ -4,6 +4,6 @@ using System.Collections;
 public class CannonballCleanup : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
-		PhotonNetwork.Destroy(other.gameObject);
+		if (other && other.gameObject) PhotonNetwork.Destroy(other.gameObject);
 	}
 }
