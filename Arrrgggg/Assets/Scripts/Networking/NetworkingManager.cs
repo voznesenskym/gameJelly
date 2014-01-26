@@ -20,6 +20,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 
 
 	public GameObject disconnectButton;
+	public GameObject joinButton;
 
 	private string gameName;
 	private bool refreshing;
@@ -88,6 +89,12 @@ public class NetworkingManager : Photon.MonoBehaviour {
 					PhotonNetwork.LeaveRoom();
 					Cleanup();
 				}
+
+				if (hit.collider.name == "joinButton"){
+					for (int i = 0; i < roomInfo.Length; i++) {
+							PhotonNetwork.JoinRoom(roomInfo[i].name);
+					}
+				}
 			} else {
 				Debug.Log ("");
 			}	
@@ -111,9 +118,9 @@ public class NetworkingManager : Photon.MonoBehaviour {
 					//if (GUI.Button(new Rect(buttonX + (80 * i), buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), roomInfo[i].name)){
 					//	PhotonNetwork.JoinRoom(roomInfo[i].name);
 					//}	
-					GameObject button = GameObject.Find ("Join");
+					joinButton.SetActive(true);
 
-					button.SetActive(true);
+
 				}		
 			}
 		}
