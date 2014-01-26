@@ -387,7 +387,8 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: .0978599638
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_RootGameObject: {fileID: 529172516}
   m_IsPrefabParent: 0
@@ -575,6 +576,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 294959824}
+  - 82: {fileID: 294959826}
+  - 114: {fileID: 294959825}
   m_Layer: 0
   m_Name: Cannons
   m_TagString: Untagged
@@ -597,6 +600,75 @@ Transform:
   - {fileID: 2113819890}
   - {fileID: 325373080}
   m_Father: {fileID: 0}
+--- !u!114 &294959825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 294959823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb76b3fde2d16f9488bab053091308b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &294959826
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 294959823}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: fa585eb5e144d264c8bfeca18e11008d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &298782238
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,6 +720,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 325373080}
   - 114: {fileID: 325373081}
+  - 148: {fileID: 325373082}
   m_Layer: 0
   m_Name: CannonFirePoint
   m_TagString: Untagged
@@ -670,17 +743,28 @@ Transform:
 --- !u!114 &325373081
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969,
-    type: 2}
-  m_PrefabInternal: {fileID: 1788292283}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 325373079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb76b3fde2d16f9488bab053091308b9, type: 3}
+  m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
   cannonBlast: {fileID: 1481532544}
+--- !u!148 &325373082
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 325373079}
+  m_Enabled: 1
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 325373080}
+  m_ViewID:
+    m_ID: 3
+    m_Type: 1
 --- !u!1 &332270843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,7 +3195,8 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -4.06117735e-08
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_RootGameObject: {fileID: 1525046647}
   m_IsPrefabParent: 0
@@ -3469,6 +3554,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 529172517}
   - 114: {fileID: 529172518}
+  - 148: {fileID: 529172519}
   m_Layer: 0
   m_Name: CannonFirePoint
   m_TagString: Untagged
@@ -3491,17 +3577,28 @@ Transform:
 --- !u!114 &529172518
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969,
-    type: 2}
-  m_PrefabInternal: {fileID: 92281369}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 529172516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb76b3fde2d16f9488bab053091308b9, type: 3}
+  m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
   cannonBlast: {fileID: 372333619}
+--- !u!148 &529172519
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 529172516}
+  m_Enabled: 1
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 529172517}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
 --- !u!1 &612940504
 GameObject:
   m_ObjectHideFlags: 0
@@ -4182,6 +4279,56 @@ MeshFilter:
   m_PrefabInternal: {fileID: 16688054}
   m_GameObject: {fileID: 903098882}
   m_Mesh: {fileID: 4300018, guid: 293b0461738a6d443a932ba5a2806661, type: 3}
+--- !u!1 &917477866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 917477868}
+  - 212: {fileID: 917477867}
+  m_Layer: 8
+  m_Name: LifeGui
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &917477867
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 917477866}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+  m_SortingLayerID: 771169021
+  m_Sprite: {fileID: 21300000, guid: 2da4d2e4a882aa041806c6a50b2c27fc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!4 &917477868
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 917477866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.5, y: 1, z: -12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1327852124}
 --- !u!1 &958245364
 GameObject:
   m_ObjectHideFlags: 0
@@ -8242,6 +8389,33 @@ SpriteRenderer:
   m_SortingLayerID: 1093696345
   m_Sprite: {fileID: 21300000, guid: fe4b7ccf8d3d4d14493ba5b138f6f376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &1327852123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1327852124}
+  m_Layer: 8
+  m_Name: GUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1327852124
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327852123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 917477868}
+  m_Father: {fileID: 0}
 --- !u!1 &1334752859
 GameObject:
   m_ObjectHideFlags: 0
@@ -8438,6 +8612,7 @@ GameObject:
   - 124: {fileID: 1450052638}
   - 81: {fileID: 1450052637}
   - 114: {fileID: 1450052642}
+  - 82: {fileID: 1450052643}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8487,10 +8662,10 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
@@ -8523,6 +8698,64 @@ MonoBehaviour:
   ySmooth: 10
   maxXAndY: {x: 5, y: 20}
   minXAndY: {x: -5, y: 5}
+--- !u!82 &1450052643
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1450052636}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: be8ce5efaa8739c49aed0233ebe4748d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1481532542
 GameObject:
   m_ObjectHideFlags: 0
@@ -9618,6 +9851,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1525046648}
   - 114: {fileID: 1525046649}
+  - 148: {fileID: 1525046650}
   m_Layer: 0
   m_Name: CannonFirePoint
   m_TagString: Untagged
@@ -9640,17 +9874,28 @@ Transform:
 --- !u!114 &1525046649
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969,
-    type: 2}
-  m_PrefabInternal: {fileID: 387171366}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1525046647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb76b3fde2d16f9488bab053091308b9, type: 3}
+  m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
   cannonBlast: {fileID: 1086706370}
+--- !u!148 &1525046650
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1525046647}
+  m_Enabled: 1
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 1525046648}
+  m_ViewID:
+    m_ID: 2
+    m_Type: 1
 --- !u!1 &1555040782
 GameObject:
   m_ObjectHideFlags: 0
@@ -11022,11 +11267,84 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -.0597876497
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_RootGameObject: {fileID: 2113819889}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1744553328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1744553333}
+  - 20: {fileID: 1744553332}
+  - 124: {fileID: 1744553331}
+  - 92: {fileID: 1744553330}
+  m_Layer: 0
+  m_Name: GuiCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!92 &1744553330
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744553328}
+  m_Enabled: 1
+--- !u!124 &1744553331
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744553328}
+  m_Enabled: 1
+--- !u!20 &1744553332
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744553328}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .300000012
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_HDR: 0
+  m_OcclusionCulling: 1
+--- !u!4 &1744553333
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1744553328}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.51641202, y: 5.45534039, z: -22.0789528}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1001 &1788292283
 Prefab:
   m_ObjectHideFlags: 0
@@ -11062,7 +11380,8 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -4.09856753e-08
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_RootGameObject: {fileID: 325373079}
   m_IsPrefabParent: 0
@@ -12865,6 +13184,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2113819890}
   - 114: {fileID: 2113819891}
+  - 148: {fileID: 2113819892}
   m_Layer: 0
   m_Name: CannonFirePoint
   m_TagString: Untagged
@@ -12887,14 +13207,25 @@ Transform:
 --- !u!114 &2113819891
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969,
-    type: 2}
-  m_PrefabInternal: {fileID: 1731872682}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2113819889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb76b3fde2d16f9488bab053091308b9, type: 3}
+  m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
   cannonBlast: {fileID: 1038595174}
+--- !u!148 &2113819892
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2113819889}
+  m_Enabled: 1
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 2113819890}
+  m_ViewID:
+    m_ID: 4
+    m_Type: 1

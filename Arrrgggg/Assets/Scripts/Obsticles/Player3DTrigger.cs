@@ -16,8 +16,9 @@ public class Player3DTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("CannonBall")) {
-			ParticleSystem ps =  (ParticleSystem)Instantiate(cannonHitParticle, _transform.position, Quaternion.identity);
-			Destroy(other.gameObject);
+			ParticleSystem ps =  (ParticleSystem)Network.Instantiate(cannonHitParticle, _transform.position, Quaternion.identity, 0);
+			Network.Destroy(other.gameObject);
+			//Destroy(other.gameObject);
 			StartCoroutine(DestroyParticle(ps));
 		}
 	}

@@ -1,19 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CannonController : MonoBehaviour {
+public class CannonController : Singleton<CannonController> {
 
-	public GameObject cannonBall;
-	public ParticleSystem cannonBlast;
+	public delegate void OnFireCannon();
+	public event OnFireCannon OnFireCannonEvent;
 
 	private const float FIRE_RATE = 5.0f;
-	private const float FIRE_FORCE = 500.0f;
-
-	private Transform _transform;
-
-	void Awake() {
-		_transform = transform;
-	}
 
 	// Use this for initialization
 	void Start () {
@@ -24,9 +17,8 @@ public class CannonController : MonoBehaviour {
 		float t = 0;
 		while (true) {
 			if (t > FIRE_RATE) {
-				cannonBlast.Play();
-				GameObject go = (GameObject)Instantiate(cannonBall, _transform.position, _transform.rotation);
-				go.rigidbody.AddForce(go.transform.forward * FIRE_FORCE);
+				OnFireCannonEvent();
+				audio.PlayOneShot(audio.clip);
 				t = 0;
 			}
 			t += Time.deltaTime;
