@@ -27,6 +27,7 @@ public class BarrerlController : Singleton<BarrerlController> {
                                         spawnPoints[i].position,
                                         spawnPoints[i].rotation, 0);
 				go.rigidbody2D.AddForce(go.transform.right * MAX_FORCE);
+				go.rigidbody2D.AddTorque(MAX_FORCE);
 				StartCoroutine(CleanUp(go));
 				t = 0;
 				spawnTimer = Random.Range(MIN_SPAWN_TIME, MAX_SPAWN_TIME);
