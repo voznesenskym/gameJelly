@@ -47,10 +47,10 @@ public class LifeManager : Singleton<LifeManager> {
 	public void SetPlayer(bool right, int id) {
 		if (right) {
 			_rightPlayerId = id;
-			IsRightPlayer = true;
+			IsRightPlayer = false;
 		} else {
 			_leftPlayerId = id;
-			IsRightPlayer = false;
+			IsRightPlayer = true;
 		}
 	}
 }
