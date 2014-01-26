@@ -74,7 +74,6 @@ public class NetworkingManager : MonoBehaviour {
 			if (hostDataExists) {
 				for (int i = 0; i < hostData.Length; i++) {
 					if (GUI.Button(new Rect(buttonX, buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), hostData[i].gameName)){
-						Network.useProxy = true;
 						Network.Connect(hostData[i]);
 					}				
 				}		
@@ -98,9 +97,6 @@ public class NetworkingManager : MonoBehaviour {
 	}
 	void startServer(){
 		bool useNat = !Network.HavePublicAddress();
-		//Network.proxyIP = myExtIP;
-		Network.useProxy = true;
-		Network.proxyIP = "www.thatsoundguy.com";
 		Network.InitializeServer (connectionsAllowed, portNumber, useNat);
 		MasterServer.RegisterHost(gameName, "ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
 	}
