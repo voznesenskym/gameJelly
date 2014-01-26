@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class NetworkCharacterControls : MonoBehaviour {
-
+public class NetworkRigidbody : MonoBehaviour {
+	
 	public double m_InterpolationBackTime = 0.1;
 	public double m_ExtrapolationLimit = 0.5;
 	
@@ -29,7 +29,7 @@ public class NetworkCharacterControls : MonoBehaviour {
 			Quaternion rot = rigidbody.rotation;
 			Vector3 velocity = rigidbody.velocity;
 			Vector3 angularVelocity = rigidbody.angularVelocity;
-			
+
 			stream.Serialize(ref pos);
 			stream.Serialize(ref velocity);
 			stream.Serialize(ref rot);
@@ -66,7 +66,7 @@ public class NetworkCharacterControls : MonoBehaviour {
 			// Slots aren't actually freed so this just makes sure the buffer is
 			// filled up and that uninitalized slots aren't used.
 			m_TimestampCount = Mathf.Min(m_TimestampCount + 1, m_BufferedState.Length);
-			
+
 			// Check if states are in order, if it is inconsistent you could reshuffel or 
 			// drop the out-of-order state. Nothing is done here
 			for (int i=0;i<m_TimestampCount-1;i++)
