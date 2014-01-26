@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(PhotonView))]
 public class Player3DTrigger : MonoBehaviour {
 
 	public string cannonHitParticle = "CannonPlayerHit";
@@ -14,6 +15,7 @@ public class Player3DTrigger : MonoBehaviour {
 	private Transform _transform;
 	private int particleCount;
 	private AudioSource _source;
+	private PhotonView _view;
 
 	void Awake() {
 		_transform = transform;
@@ -70,7 +72,7 @@ public class Player3DTrigger : MonoBehaviour {
 	}
 	
 	private IEnumerator Respawn() {
-		DieSound();
+		_view.RPC("DieSound", PhotonTargets.All);
 		yield return StartCoroutine(SplatPlayer());
 		LoseLife();
 		int r = Random.Range(0, respawnPoints.Length);
@@ -81,6 +83,7 @@ public class Player3DTrigger : MonoBehaviour {
 		player.rigidbody2D.WakeUp();
 	}
 
+	[RPC]
 	public void DieSound() {
 		_source.PlayOneShot(_yells[Random.Range(0, deathYellCount)]);
 	}

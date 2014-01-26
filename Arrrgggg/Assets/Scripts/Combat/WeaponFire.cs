@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(PhotonView))]
 public class WeaponFire : Photon.MonoBehaviour {
 	
 	public  Transform	bulletSpawnPoint;
@@ -16,6 +17,7 @@ public class WeaponFire : Photon.MonoBehaviour {
 	private float		_cooldownTimer	=	0f;
 	private	bool		_isOnCooldown	=	false;
 	private AudioSource	_source;
+	private PhotonView _view;
 	
 	public bool IsOnCooldown {
 		get { return _isOnCooldown; }
@@ -31,6 +33,8 @@ public class WeaponFire : Photon.MonoBehaviour {
 		for (int i = 0, count = numberOfArrs; i < count; ++i) {
 			arrs[i] = (AudioClip)Resources.Load("Audio/Arr_" + i.ToString());
 		}
+
+		_view = GetComponent<PhotonView>();
 	}
 	
 	// Update is called once per frame
@@ -54,7 +58,7 @@ public class WeaponFire : Photon.MonoBehaviour {
 
 		ParticleSystem	p = g.particleSystem;
 
-		_source.PlayOneShot(arrs[Random.Range(0, numberOfArrs)]);
+		_view.RPC("PlaySound", PhotonTargets.All);
 
 		Camera.main.GetComponent<SightController>().GoodSight();
 
@@ -80,5 +84,10 @@ public class WeaponFire : Photon.MonoBehaviour {
 		flare.Play ();
 		while (flare.isPlaying) yield return null;
 		if (flare && flare.gameObject) PhotonNetwork.Destroy(flare.gameObject);
+	}
+
+	[RPC]
+	public void PlaySound() {
+		_source.PlayOneShot(arrs[Random.Range(0, numberOfArrs)]);
 	}
 }
