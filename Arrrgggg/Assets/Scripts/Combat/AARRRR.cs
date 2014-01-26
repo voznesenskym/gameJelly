@@ -13,6 +13,14 @@ public class AARRRR : MonoBehaviour {
 	void Awake() {
 		_view	=	GetComponent<NetworkView>();	
 	}
+
+	void Start() {
+		if (transform.right.x < 0) {
+			Vector3 sc = transform.localScale;
+			sc.y *= -1;
+			transform.localScale = sc;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
