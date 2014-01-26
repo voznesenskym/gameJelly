@@ -82,7 +82,8 @@ public class NetworkingManager : Photon.MonoBehaviour {
 
 	}
 	void startServer(){
-		PhotonNetwork.CreateRoom(gameName);
+		string nm = gameName + new System.DateTime().DateTimeToUnixTimestamp();
+		PhotonNetwork.CreateRoom(nm);
 	}
 
 	void OnJoinedRoom () {
