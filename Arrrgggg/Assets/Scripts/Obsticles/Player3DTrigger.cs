@@ -17,6 +17,7 @@ public class Player3DTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
+		Debug.Log ("fuck these balls");
 		if (other.CompareTag("CannonBall")) {
 			if (particleCount < 4){
 				Debug.Log ("inside particle count");
