@@ -391,6 +391,10 @@ Prefab:
       propertyPath: subId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
+      propertyPath: subId
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
@@ -436,6 +440,8 @@ Transform:
   - {fileID: 1371984396}
   - {fileID: 1975013073}
   - {fileID: 2000619033}
+  - {fileID: 993082659}
+  - {fileID: 254992332}
   m_Father: {fileID: 770472409}
 --- !u!1 &181573426
 GameObject:
@@ -572,6 +578,68 @@ MeshFilter:
   m_PrefabInternal: {fileID: 16688054}
   m_GameObject: {fileID: 191924127}
   m_Mesh: {fileID: 4300062, guid: 293b0461738a6d443a932ba5a2806661, type: 3}
+--- !u!1 &254992331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 254992332}
+  - 212: {fileID: 254992334}
+  - 61: {fileID: 254992333}
+  m_Layer: 0
+  m_Name: SpawnPlatform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &254992332
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 254992331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.8000002, y: 6, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 112016385}
+--- !u!61 &254992333
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 254992331}
+  m_Enabled: 1
+  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
+  m_IsTrigger: 0
+  m_Size: {x: 2.55999994, y: .639999986}
+  m_Center: {x: 0, y: 0}
+--- !u!212 &254992334
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 254992331}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortingLayerID: 1093696345
+  m_Sprite: {fileID: 21300000, guid: fe7567b113018d04882eb0be7e0ee553, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &294959823
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d141b8bb725ff4b55ba82074da1ba983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 100012, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
+  spawnObject: 2D Character
   spawnPosition: {fileID: 1871458185}
   connectionsAllowed: 4
   portNumber: 2300
@@ -724,6 +792,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 325373080}
   - 114: {fileID: 325373083}
+  - 114: {fileID: 325373084}
   - 114: {fileID: 325373081}
   - 148: {fileID: 325373082}
   m_Layer: 0
@@ -756,7 +825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
   cannonBlast: {fileID: 1481532544}
 --- !u!148 &325373082
 NetworkView:
@@ -788,6 +856,27 @@ MonoBehaviour:
   prefixBackup: -1
   observed: {fileID: 325373080}
   synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
+--- !u!114 &325373084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 5b7992a9a5bec9b419b18e7e37c6e969,
+    type: 2}
+  m_PrefabInternal: {fileID: 1788292283}
+  m_GameObject: {fileID: 325373079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 7
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 325373080}
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   instantiationId: 0
@@ -3225,6 +3314,10 @@ Prefab:
       propertyPath: subId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
+      propertyPath: subId
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
@@ -3584,6 +3677,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 529172517}
   - 114: {fileID: 529172520}
+  - 114: {fileID: 529172521}
   - 114: {fileID: 529172518}
   - 148: {fileID: 529172519}
   m_Layer: 0
@@ -3616,7 +3710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
   cannonBlast: {fileID: 372333619}
 --- !u!148 &529172519
 NetworkView:
@@ -3648,6 +3741,27 @@ MonoBehaviour:
   prefixBackup: -1
   observed: {fileID: 529172517}
   synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
+--- !u!114 &529172521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 5b7992a9a5bec9b419b18e7e37c6e969,
+    type: 2}
+  m_PrefabInternal: {fileID: 92281369}
+  m_GameObject: {fileID: 529172516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 6
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 529172517}
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   instantiationId: 0
@@ -4596,6 +4710,68 @@ MeshFilter:
   m_PrefabInternal: {fileID: 16688054}
   m_GameObject: {fileID: 988449924}
   m_Mesh: {fileID: 4300012, guid: 293b0461738a6d443a932ba5a2806661, type: 3}
+--- !u!1 &993082658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 993082659}
+  - 212: {fileID: 993082661}
+  - 61: {fileID: 993082660}
+  m_Layer: 0
+  m_Name: SpawnPlatform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &993082659
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993082658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.8000002, y: 6, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 112016385}
+--- !u!61 &993082660
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993082658}
+  m_Enabled: 1
+  m_Material: {fileID: 6200000, guid: 3626fe8e008014f6bbd19bb72937b311, type: 2}
+  m_IsTrigger: 0
+  m_Size: {x: 2.55999994, y: .639999986}
+  m_Center: {x: 0, y: 0}
+--- !u!212 &993082661
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 993082658}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortingLayerID: 1093696345
+  m_Sprite: {fileID: 21300000, guid: fe7567b113018d04882eb0be7e0ee553, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1005310311
 GameObject:
   m_ObjectHideFlags: 0
@@ -9999,6 +10175,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1525046648}
   - 114: {fileID: 1525046651}
+  - 114: {fileID: 1525046652}
   - 114: {fileID: 1525046649}
   - 148: {fileID: 1525046650}
   m_Layer: 0
@@ -10031,7 +10208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
   cannonBlast: {fileID: 1086706370}
 --- !u!148 &1525046650
 NetworkView:
@@ -10063,6 +10239,27 @@ MonoBehaviour:
   prefixBackup: -1
   observed: {fileID: 1525046648}
   synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
+--- !u!114 &1525046652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 5b7992a9a5bec9b419b18e7e37c6e969,
+    type: 2}
+  m_PrefabInternal: {fileID: 387171366}
+  m_GameObject: {fileID: 1525046647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 5
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 1525046648}
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   instantiationId: 0
@@ -11441,6 +11638,10 @@ Prefab:
       propertyPath: subId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
+      propertyPath: subId
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
@@ -11558,6 +11759,10 @@ Prefab:
       propertyPath: subId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
+      propertyPath: subId
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5b7992a9a5bec9b419b18e7e37c6e969, type: 2}
@@ -11648,7 +11853,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1871458184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.67999983, y: 5.79542589, z: -10}
+  m_LocalPosition: {x: -7.67999983, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13049,7 +13254,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2007894738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.67999983, y: 5.79542589, z: -10}
+  m_LocalPosition: {x: 7.67999983, y: 7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13362,6 +13567,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2113819890}
   - 114: {fileID: 2113819893}
+  - 114: {fileID: 2113819894}
   - 114: {fileID: 2113819891}
   - 148: {fileID: 2113819892}
   m_Layer: 0
@@ -13394,7 +13600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
   cannonBlast: {fileID: 1038595174}
 --- !u!148 &2113819892
 NetworkView:
@@ -13426,6 +13631,27 @@ MonoBehaviour:
   prefixBackup: -1
   observed: {fileID: 2113819890}
   synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
+--- !u!114 &2113819894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 5b7992a9a5bec9b419b18e7e37c6e969,
+    type: 2}
+  m_PrefabInternal: {fileID: 1731872682}
+  m_GameObject: {fileID: 2113819889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 8
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 2113819890}
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   instantiationId: 0

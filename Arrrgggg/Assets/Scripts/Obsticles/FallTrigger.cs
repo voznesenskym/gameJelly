@@ -24,10 +24,15 @@ public class FallTrigger : MonoBehaviour {
 				}
 			}
 			if (currentIndex > -1 ) {
-				RendererSwitch(other.transform, false);
+				LockPlayerInPlace(other.gameObject);
 				StartCoroutine(Respawn(other.gameObject, currentIndex));
 			}
 		}
+	}
+
+	private void LockPlayerInPlace(GameObject go) {
+		go.GetComponent<Platformer2DUserControl>().enabled = false;
+		go.rigidbody2D.Sleep();
 	}
 
 	private void RendererSwitch(Transform t, bool isOn) {
@@ -43,8 +48,9 @@ public class FallTrigger : MonoBehaviour {
 	private IEnumerator Respawn(GameObject player, int index) {
 		int r = Random.Range(0, respawnPoints.Length);
 		player.transform.position = respawnPoints[r].position;
+		player.GetComponent<Platformer2DUserControl>().enabled = true;
+		player.rigidbody2D.WakeUp();
 		yield return new WaitForSeconds(1.0f);
-		RendererSwitch(player.transform, true);
 		playerPool[index] = null;
 	}
 }

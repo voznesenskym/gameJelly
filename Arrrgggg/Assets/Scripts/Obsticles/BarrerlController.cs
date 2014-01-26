@@ -18,6 +18,9 @@ public class BarrerlController : Singleton<BarrerlController> {
 		float t = 0;
 		float spawnTimer = Random.Range(MIN_SPAWN_TIME, MAX_SPAWN_TIME);
 		while (true) {
+			while (PhotonNetwork.room == null) {
+				yield return null;
+			}
 			if (t > spawnTimer) {
 				int i = Random.Range(0, spawnPoints.Length);
 				GameObject go = (GameObject)PhotonNetwork.Instantiate("Barrel",
@@ -35,6 +38,8 @@ public class BarrerlController : Singleton<BarrerlController> {
 
 	private IEnumerator CleanUp(GameObject go) {
 		yield return new WaitForSeconds(4.0f);
-		PhotonNetwork.Destroy(go);
+		if (go) {
+			PhotonNetwork.Destroy(go);
+		}
 	}
 }
