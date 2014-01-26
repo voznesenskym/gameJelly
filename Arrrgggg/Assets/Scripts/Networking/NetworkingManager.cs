@@ -118,6 +118,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
 			turnStuffOnAtInstantiationOfPlayer();
 		}
+
 		StartCoroutine(RegisterLives());
 	}
 
