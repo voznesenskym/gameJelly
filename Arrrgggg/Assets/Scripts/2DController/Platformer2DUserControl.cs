@@ -14,16 +14,16 @@ public class Platformer2DUserControl : MonoBehaviour
 
     void Update ()
     {
-		//if (networkView.isMine){
+		if (networkView.isMine){
 	        // Read the jump input in Update so button presses aren't missed.
 	        if (CrossPlatformInput.GetButtonDown("Jump"))
 	            jump = true;
-		//}
+		}
 	}
 
 	void FixedUpdate()
 	{
-		//if (networkView.isMine) {
+		if (networkView.isMine) {
 			// Read the inputs.
 			bool crouch = Input.GetKey (KeyCode.LeftControl);
 			float h = CrossPlatformInput.GetAxis ("Horizontal");
@@ -33,6 +33,6 @@ public class Platformer2DUserControl : MonoBehaviour
 
 			// Reset the jump input once it has been used.
 			jump = false;
-		//}
+		}
 	}
 }
