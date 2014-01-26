@@ -5,7 +5,7 @@ using System.Linq;
 public class NetworkingManager : MonoBehaviour {
 	public GameObject spawnObject;
 	public Transform spawnPosition;
-	public int connectionsAllowed = 4, portNumber = 2300;
+	public int connectionsAllowed = 4, portNumber = 5843;
 
 	PlatformerCharacter2D character;
 
