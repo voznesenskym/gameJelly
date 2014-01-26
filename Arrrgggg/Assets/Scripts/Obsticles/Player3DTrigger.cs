@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class Player3DTrigger : MonoBehaviour {
 
 	public string cannonHitParticle = "CannonPlayerHit";
 	public Transform[] respawnPoints;
 	public GameObject player;
 
+	public int deathYellCount = 3;
+
+	private AudioClip[] _yells;
 	private Transform _transform;
 	private int particleCount;
+	private AudioSource _source;
 
 	void Awake() {
 		_transform = transform;
@@ -16,6 +21,14 @@ public class Player3DTrigger : MonoBehaviour {
 			collider.isTrigger = true;
 		}
 		particleCount = 0;
+	}
+
+	void Start() {
+		_yells = new AudioClip[deathYellCount];
+		_source = GetComponent<AudioSource>();
+		for (int i = 0, count = deathYellCount; i < count; ++i) {
+			_yells[i] = (AudioClip)Resources.Load("Audio/Death_" + i.ToString());
+		}
 	}
 
 	void OnTriggerEnter(Collider other) {
@@ -59,6 +72,8 @@ public class Player3DTrigger : MonoBehaviour {
 	}
 	
 	private IEnumerator Respawn() {
+
+
 		yield return StartCoroutine(SplatPlayer());
 		LoseLife();
 		int r = Random.Range(0, respawnPoints.Length);
@@ -66,5 +81,9 @@ public class Player3DTrigger : MonoBehaviour {
 		player.transform.position = respawnPoints[r].position;
 		player.GetComponent<Platformer2DUserControl>().enabled = true;
 		player.rigidbody2D.WakeUp();
+	}
+
+	public void DieSound() {
+		_source.PlayOneShot(_yells[Random.Range(0, deathYellCount)]);
 	}
 }

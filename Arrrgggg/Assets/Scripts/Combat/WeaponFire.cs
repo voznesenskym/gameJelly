@@ -2,16 +2,20 @@ using UnityEngine;
 using System.Linq;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class WeaponFire : Photon.MonoBehaviour {
 	
 	public  Transform	bulletSpawnPoint;
 	public  string		bullet 			=	"AARRRR";
 	public 	string 		muzzleFire		=	"MuzzleFire";
 	public  float		cooldown		=	2f;
+	public	int			numberOfArrs	=	7;
+	public  AudioClip[]	arrs;
 	
 	private Vector3		_forward;
 	private float		_cooldownTimer	=	0f;
 	private	bool		_isOnCooldown	=	false;
+	private AudioSource	_source;
 	
 	public bool IsOnCooldown {
 		get { return _isOnCooldown; }
@@ -20,6 +24,13 @@ public class WeaponFire : Photon.MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (!bulletSpawnPoint)	bulletSpawnPoint = transform;
+
+		_source = GetComponent<AudioSource>();
+
+		arrs = new AudioClip[numberOfArrs];
+		for (int i = 0, count = numberOfArrs; i < count; ++i) {
+			arrs[i] = (AudioClip)Resources.Load("Audio/Arr_" + i.ToString());
+		}
 	}
 	
 	// Update is called once per frame
@@ -42,6 +53,8 @@ public class WeaponFire : Photon.MonoBehaviour {
 		GameObject 		g = (GameObject)PhotonNetwork.Instantiate("MuzzleFlash", bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
 
 		ParticleSystem	p = g.particleSystem;
+
+		_source.PlayOneShot(arrs[Random.Range(0, numberOfArrs)]);
 
 		Camera.main.GetComponent<SightController>().GoodSight();
 

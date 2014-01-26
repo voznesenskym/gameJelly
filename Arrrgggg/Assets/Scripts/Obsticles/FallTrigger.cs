@@ -54,6 +54,7 @@ public class FallTrigger : MonoBehaviour {
 		int r = Random.Range(0, respawnPoints.Length);
 		player.transform.position = respawnPoints[r].position;
 		player.GetComponent<Platformer2DUserControl>().enabled = true;
+		player.GetComponentInChildren<Player3DTrigger>().DieSound();
 		player.rigidbody2D.WakeUp();
 		yield return new WaitForSeconds(1.0f);
 		playerPool[index] = null;
