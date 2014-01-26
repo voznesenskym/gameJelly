@@ -63,6 +63,6 @@ public class WeaponFire : Photon.MonoBehaviour {
 	private IEnumerator MuzzleFlare(ParticleSystem flare) {
 		flare.Play ();
 		while (flare.isPlaying) yield return null;
-		Destroy(flare.gameObject);
+		PhotonNetwork.Destroy(flare.gameObject);
 	}
 }

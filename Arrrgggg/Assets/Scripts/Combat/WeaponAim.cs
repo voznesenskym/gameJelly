@@ -11,6 +11,7 @@ public class WeaponAim : MonoBehaviour {
 
 	private	bool					_isFacingRight	=	true;
 	private bool					_controllerConnected = false;
+	private PhotonView				_view;
 	#endregion
 
 	#region Properties
@@ -23,42 +24,46 @@ public class WeaponAim : MonoBehaviour {
 		if (!weaponFire)	weaponFire	=	gameObject.GetComponent<WeaponFire>();
 		if (!camera)		mainCamera	=	Camera.main;
 		if (!arm)			arm			=	transform;
+
+		_view = controller.GetComponent<PhotonView>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 	armForward	=	arm.right;
-		Vector3		toPoint		=	mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(mainCamera.transform.position.z + controller.transform.position.z))).XY ();// - arm.position.XY ();
-		Vector3		toPointJoy		=	new Vector3(CrossPlatformInput.GetAxis("JoyRX"),
-		                                CrossPlatformInput.GetAxis("JoyRY") * -1, 0).normalized;
+		if (_view.isMine) {
+			Vector3 	armForward	=	arm.right;
+			Vector3		toPoint		=	mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(mainCamera.transform.position.z + controller.transform.position.z))).XY ();// - arm.position.XY ();
+			Vector3		toPointJoy		=	new Vector3(CrossPlatformInput.GetAxis("JoyRX"),
+			                                CrossPlatformInput.GetAxis("JoyRY") * -1, 0).normalized;
 
-		if (toPointJoy.sqrMagnitude > 0) {
-			_controllerConnected = true;
-			toPoint = toPointJoy;
-		} 
+			if (toPointJoy.sqrMagnitude > 0) {
+				_controllerConnected = true;
+				toPoint = toPointJoy;
+			} 
 
-		Vector3		fireAt;
+			Vector3		fireAt;
 
-		if ((controller.IsFacingRight	&&	!_isFacingRight) ||
-		    (!controller.IsFacingRight	&&	_isFacingRight)) {
-			Flip();
+			if ((controller.IsFacingRight	&&	!_isFacingRight) ||
+			    (!controller.IsFacingRight	&&	_isFacingRight)) {
+				Flip();
+			}
+
+			if (!_isFacingRight) {
+				toPoint.y *= -1;
+			}
+
+			float		zRot		=	Vector3.Angle(armForward, toPoint);
+						zRot		*=	Mathf.Sign(Vector3.Cross(armForward, toPoint).z);
+
+			if (!_controllerConnected || toPointJoy.sqrMagnitude > 0) arm.right = toPoint;
+
+			if (_isFacingRight) {
+				fireAt = new Vector3(toPoint.x, toPoint.y, toPoint.z);
+			} else {
+				fireAt = new Vector3(toPoint.x, -toPoint.y, toPoint.z);
+			}
+			weaponFire.SetForward(fireAt);
 		}
-
-		if (!_isFacingRight) {
-			toPoint.y *= -1;
-		}
-
-		float		zRot		=	Vector3.Angle(armForward, toPoint);
-					zRot		*=	Mathf.Sign(Vector3.Cross(armForward, toPoint).z);
-
-		if (!_controllerConnected || toPointJoy.sqrMagnitude > 0) arm.right = toPoint;
-
-		if (_isFacingRight) {
-			fireAt = new Vector3(toPoint.x, toPoint.y, toPoint.z);
-		} else {
-			fireAt = new Vector3(toPoint.x, -toPoint.y, toPoint.z);
-		}
-		weaponFire.SetForward(fireAt);
 	}
 	#endregion
 

@@ -20,7 +20,7 @@ public class Barrel : MonoBehaviour {
 					break;
 				}
 			}
-			Network.Destroy(_gameObject);
+			PhotonNetwork.Destroy(_gameObject);
 		}
 	}
 }

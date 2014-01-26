@@ -34,6 +34,6 @@ public class Player3DTrigger : MonoBehaviour {
 	private IEnumerator DestroyParticle(ParticleSystem ps) {
 		yield return new WaitForSeconds(1.5f);
 		particleCount --;
-		Destroy(ps);
+		PhotonNetwork.Destroy(ps.gameObject);
 	}
 }
