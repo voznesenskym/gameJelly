@@ -4,28 +4,39 @@ using System.Collections;
 public class NetworkCharacterControls : MonoBehaviour {
 
 	// Use this for initialization
+	Vector3 realPosition = Vector3.zero;
+	Quaternion realRotation = Quaternion.identity;
+	PhotonView photonView;
+	// Use this for initialization
 	void Start () {
-	
+		photonView = GetComponent<PhotonView> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
-
-	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-		Debug.Log ("here i am, fuck you like a hurricane");
-		if (stream.isWriting) {
-			//our player. we need to send our position to network
-
-			stream.SendNext(transform.position);
-			stream.SendNext(transform.position);
-
-		} else {
-			// this is smeone else we need to recieve thier position
-
-			transform.position = (Vector3)stream.ReceiveNext();
-			transform.rotation = (Quaternion)stream.ReceiveNext();                   
+		if( photonView.isMine ) {
+			// Do nothing -- the character motor/input/etc... is moving us
 		}
+		else {
+			transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
+			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
+		}
+	}
+	
+	public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+		if(stream.isWriting) {
+			// This is OUR player. We need to send our actual position to the network.
+			
+			stream.SendNext(transform.position);
+			stream.SendNext(transform.rotation);
+		}
+		else {
+			// This is someone else's player. We need to receive their position (as of a few
+			// millisecond ago, and update our version of that player.
+			
+			realPosition = (Vector3)stream.ReceiveNext();
+			realRotation = (Quaternion)stream.ReceiveNext();
+		}
+		
 	}
 }
