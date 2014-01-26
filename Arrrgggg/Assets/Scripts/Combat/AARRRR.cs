@@ -36,7 +36,14 @@ public class AARRRR : MonoBehaviour {
 		GameObject player	=	collision.gameObject;
 		
 		if (player.CompareTag("Player") && player.GetComponent<NetworkView>().isMine && !_view.isMine) {
-			player.GetComponent<SightController>().LoseSight();
+			Camera.main.GetComponent<SightController>().LoseSight();
+			_view.RPC("RemoveBullet", RPCMode.AllBuffered);
 		}
+	}
+
+	[RPC]
+	void RemoveBullet() {
+		Network.RemoveRPCs(_view.viewID);
+		Destroy(gameObject);
 	}
 }

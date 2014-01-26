@@ -38,10 +38,14 @@ public class CameraFollow : MonoBehaviour
 	void Update ()
 	{
 		if (!playerExists) {
-			player = GameObject.FindGameObjectWithTag("Player").transform;
-			playerExists = true;
+			GameObject p = GameObject.FindGameObjectWithTag("Player");
+			if (p) {
+				player = p.transform;
+				playerExists = true;
+			}
 		}
-		TrackPlayer();
+
+		if (playerExists) TrackPlayer();
 	}
 	
 	

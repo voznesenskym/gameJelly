@@ -42,7 +42,8 @@ public class WeaponFire : MonoBehaviour {
 	private void FireBullet() {
 		GameObject 		b = (GameObject)Network.Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
 		ParticleSystem 	p = (ParticleSystem)Network.Instantiate(muzzleFire, bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
-		
+
+		StartCoroutine(MuzzleFlare (p));
 		p.Play();
 		b.transform.right	=	_forward;
 		_isOnCooldown		=	true;
@@ -58,5 +59,11 @@ public class WeaponFire : MonoBehaviour {
 	private void OffCooldown() {
 		_cooldownTimer	=	0f;
 		_isOnCooldown	=	false;
+	}
+
+	private IEnumerator MuzzleFlare(ParticleSystem flare) {
+		flare.Play ();
+		while (flare.isPlaying) yield return null;
+		Destroy(flare.gameObject);
 	}
 }
