@@ -119,7 +119,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 			turnStuffOnAtInstantiationOfPlayer();
 		}
 
-
+		if (LifeManager.Instance != null) LifeManager.Instance.RegisterPlayerLives();
 	}
 
 	void turnStuffOnAtInstantiationOfPlayer(){
