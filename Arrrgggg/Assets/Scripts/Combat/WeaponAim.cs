@@ -10,6 +10,7 @@ public class WeaponAim : MonoBehaviour {
 	public	Camera					mainCamera;
 
 	private	bool					_isFacingRight	=	true;
+	private bool					_controllerConnected = false;
 	#endregion
 
 	#region Properties
@@ -27,13 +28,15 @@ public class WeaponAim : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 	armForward	=	arm.right;
-		Vector3		toPoint		=	mainCamera.ScreenToWorldPoint(Input.mousePosition).XY() - arm.position;
+		Vector3		toPoint		=	mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(mainCamera.transform.position.z + controller.transform.position.z))).XY ();// - arm.position.XY ();
 		Vector3		toPointJoy		=	new Vector3(CrossPlatformInput.GetAxis("JoyRX"),
 		                                CrossPlatformInput.GetAxis("JoyRY") * -1, 0).normalized;
-		Debug.Log(toPointJoy);
+
 		if (toPointJoy.sqrMagnitude > 0) {
+			_controllerConnected = true;
 			toPoint = toPointJoy;
-		}
+		} 
+
 		Vector3		fireAt;
 
 		if ((controller.IsFacingRight	&&	!_isFacingRight) ||
@@ -48,7 +51,7 @@ public class WeaponAim : MonoBehaviour {
 		float		zRot		=	Vector3.Angle(armForward, toPoint);
 					zRot		*=	Mathf.Sign(Vector3.Cross(armForward, toPoint).z);
 
-		arm.Rotate(0, 0, zRot);
+		if (!_controllerConnected || toPointJoy.sqrMagnitude > 0) arm.right = toPoint;
 
 		if (_isFacingRight) {
 			fireAt = new Vector3(toPoint.x, toPoint.y, toPoint.z);
