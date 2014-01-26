@@ -90,7 +90,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 400000}
-  synchronization: 1
+  synchronization: 0
   onSerializeTransformOption: 0
   onSerializeRigidBodyOption: 2
   instantiationId: -1
