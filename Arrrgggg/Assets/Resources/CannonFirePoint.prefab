@@ -42,8 +42,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400004}
-  - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: CannonFirePoint
   m_TagString: Untagged
@@ -80,8 +81,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: 1.39277407e-08, y: .947879314, z: .318629593, w: -4.14331218e-08}
-  m_LocalPosition: {x: -1.03063023, y: 1.47161746, z: -3.05877256}
+  m_LocalRotation: {x: .0300034676, y: .928216577, z: .357683212, w: .0978599638}
+  m_LocalPosition: {x: 2.49403572, y: 1.54770195, z: -3.00110459}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -94,9 +95,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb76b3fde2d16f9488bab053091308b9, type: 3}
+  m_Script: {fileID: 11500000, guid: dec6f19a076ee884db9948afdc1c8da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
+  cannonBlast: {fileID: 19800002}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -114,6 +117,26 @@ MonoBehaviour:
   prefixBackup: -1
   observed: {fileID: 400004}
   synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 0
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 400004}
+  synchronization: 0
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
   instantiationId: 0

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class CannonFire : MonoBehaviour {
 
-	public GameObject cannonBall;
 	public ParticleSystem cannonBlast;
 
 	private const float FIRE_FORCE = 500.0f;
@@ -28,9 +27,7 @@ public class CannonFire : MonoBehaviour {
 
 	private void FireCannon() {
 		cannonBlast.Play();
-		if (!Network.isClient && !Network.isServer) {
-			return;
-		}
+
 		GameObject go = (GameObject)PhotonNetwork.Instantiate("CannonBall", _transform.position, _transform.rotation, 0);
 		go.rigidbody.AddForce(go.transform.forward * FIRE_FORCE);
 	}
