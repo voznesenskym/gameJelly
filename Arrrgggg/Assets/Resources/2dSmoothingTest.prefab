@@ -32,7 +32,6 @@ GameObject:
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400016}
   - 82: {fileID: 8200000}
   m_Layer: 9
   m_Name: 2dSmoothingTest
@@ -369,8 +368,8 @@ MonoBehaviour:
   ownerId: 0
   group: 0
   prefixBackup: -1
-  observed: {fileID: 11400016}
-  synchronization: 2
+  observed: {fileID: 11400004}
+  synchronization: 3
   onSerializeTransformOption: 0
   onSerializeRigidBodyOption: 2
   instantiationId: -1
@@ -476,17 +475,6 @@ MonoBehaviour:
   weaponFire: {fileID: 11400012}
   arm: {fileID: 400010}
   mainCamera: {fileID: 0}
---- !u!114 &11400016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90037c07d08d24585b72f54240dfa77a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
