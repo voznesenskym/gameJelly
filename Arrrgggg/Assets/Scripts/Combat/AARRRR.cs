@@ -44,11 +44,12 @@ public class AARRRR : Photon.MonoBehaviour {
 		GameObject player	=	collision.gameObject;
 		
 		if (player.CompareTag("Player") && player.GetComponent<PhotonView>().isMine && !_view.isMine) {
-			SightController s = Camera.main.GetComponent<SightController>();
-			if (!s) {
+			SightController s = GameObject.FindWithTag("MainCamera").GetComponent<SightController>();
+			Debug.Log(s);
+			if (s == null) {
 				s = Camera.main.gameObject.AddComponent<SightController>();
 			}
-			s.LoseSight();
+			if (s) s.LoseSight();
 			RemoveBullet();
 		}
 	}

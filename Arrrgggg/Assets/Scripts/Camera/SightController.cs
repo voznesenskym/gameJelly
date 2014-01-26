@@ -6,11 +6,11 @@ public class SightController : MonoBehaviour {
 	public float lossOfSightDuration = 5f;
 
 	public void LoseSight() {
-		camera.enabled = false;
+		camera.fieldOfView = 5f;
 		Invoke("GainSight", lossOfSightDuration);
 	}
 
 	public void GainSight() {
-		camera.enabled = true;
+		camera.fieldOfView = 60f;
 	}
 }
