@@ -23,7 +23,7 @@ public class WeaponFire : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((CrossPlatformInput.GetButtonDown("Fire1") || CrossPlatformInput.GetAxis("Fire1") == 1) && !_isOnCooldown) {
+		if (GetComponent<PhotonView>().isMine && (CrossPlatformInput.GetButtonDown("Fire1") || CrossPlatformInput.GetAxis("Fire1") == 1) && !_isOnCooldown) {
 			FireBullet();
 		}
 		
