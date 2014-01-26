@@ -6,7 +6,7 @@ public class BarrerlController : Singleton<BarrerlController> {
 	public Transform[] spawnPoints;
 	public GameObject barrell;
 
-	private const float MIN_SPAWN_TIME = 2.0f;
+	private const float MIN_SPAWN_TIME = 5.0f;
 	private const float MAX_SPAWN_TIME = 10.0f;
 	private const float MAX_FORCE = 300.0f;
 

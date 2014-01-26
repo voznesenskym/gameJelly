@@ -18,7 +18,7 @@ public class Platformer2DUserControl : MonoBehaviour
     {
 		if (_photonView.isMine){
 	        // Read the jump input in Update so button presses aren't missed.
-	        if (CrossPlatformInput.GetButtonDown("Jump"))
+			if (CrossPlatformInput.GetButtonDown("Jump"))
 	            jump = true;
 		}
 	}

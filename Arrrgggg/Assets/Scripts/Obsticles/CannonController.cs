@@ -15,8 +15,8 @@ public class CannonController : Singleton<CannonController> {
 
 	private IEnumerator FireCannon() {
 		float t = 0;
+		while (PhotonNetwork.room == null) yield return null;
 		while (PhotonNetwork.isMasterClient) {
-			while (PhotonNetwork.room == null) yield return null;
 			if (t > FIRE_RATE) {
 				OnFireCannonEvent();
 				audio.PlayOneShot(audio.clip);

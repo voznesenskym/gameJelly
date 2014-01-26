@@ -33,13 +33,19 @@ public class WeaponAim : MonoBehaviour {
 		if (_view.isMine) {
 			Vector3 	armForward	=	arm.right;
 			Vector3		toPoint		=	mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Mathf.Abs(mainCamera.transform.position.z + controller.transform.position.z))).XY ();// - arm.position.XY ();
-			Vector3		toPointJoy		=	new Vector3(CrossPlatformInput.GetAxis("JoyRX"),
-			                                CrossPlatformInput.GetAxis("JoyRY") * -1, 0).normalized;
+			Vector3		toPointJoy		=	new Vector3(CrossPlatformInput.GetAxis("HorizontalJoy"),
+			                                CrossPlatformInput.GetAxis("VerticalJoy") * 1, 0).normalized;
 
 			if (toPointJoy.sqrMagnitude > 0) {
 				_controllerConnected = true;
 				toPoint = toPointJoy;
-			} 
+			}else if(_controllerConnected) {
+				if (_isFacingRight) {
+					toPoint = new Vector3(1, 0, 0);
+				}else {
+					toPoint = new Vector3(-1, 0, 0);
+				}
+			}
 
 			Vector3		fireAt;
 
