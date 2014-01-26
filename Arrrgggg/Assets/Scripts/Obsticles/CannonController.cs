@@ -18,12 +18,17 @@ public class CannonController : Singleton<CannonController> {
 		while (PhotonNetwork.room == null) yield return null;
 		while (PhotonNetwork.isMasterClient) {
 			if (t > FIRE_RATE) {
-				OnFireCannonEvent();
-				audio.PlayOneShot(audio.clip);
+				gameObject.GetPhotonView().RPC("FireThatShit", PhotonTargets.All);
 				t = 0;
 			}
 			t += Time.deltaTime;
 			yield return null;
 		}
+	}
+
+	[RPC]
+	private void FireThatShit() {
+		OnFireCannonEvent();
+		audio.PlayOneShot(audio.clip);
 	}
 }
