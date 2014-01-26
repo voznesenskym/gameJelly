@@ -77,6 +77,7 @@ public class Player3DTrigger : MonoBehaviour {
 		yield return new WaitForSeconds(1.0f);
 		player.transform.position = respawnPoints[r].position;
 		player.GetComponent<Platformer2DUserControl>().enabled = true;
+		Camera.main.GetComponent<SightController>().ResetSight();
 		player.rigidbody2D.WakeUp();
 	}
 

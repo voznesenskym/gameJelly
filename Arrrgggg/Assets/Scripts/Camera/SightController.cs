@@ -9,6 +9,11 @@ public class SightController : MonoBehaviour {
 	public GameObject player;
 	public BlindnessMatUpdater mat;
 
+	void Start()
+	{
+		ResetSight();
+	}
+
 	void Update() {
 		if (!player) {
 			GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -18,20 +23,32 @@ public class SightController : MonoBehaviour {
 	}
 
 	public void LoseSight() {
-		if (player && mat.GetScreenObscuredPercentage() > 0.45f) {
+		/*if (player && mat.GetScreenObscuredPercentage() > 0.45f) {
 			mat.SetScreenObscuredPercentage(noSight);
 			Invoke("GainSight", lossOfSightDuration);
+		}*/
+		if (player && mat.GetScreenObscuredPercentage() > 0.30f)
+		{
+			mat.SetScreenObscuredPercentage(0.1f);
+		}
+		else if (player)
+		{
+			mat.SetScreenObscuredPercentage(mat.GetScreenObscuredPercentage() - 0.07f);
 		}
 	}
 
-	public void GainSight() {
+	public void ResetSight() {
 		mat.SetScreenObscuredPercentage(normalSight);
 	}
 
 	public void GoodSight() {
-		if (player && mat.GetScreenObscuredPercentage() > 0.45f) {
+		/*if (player && mat.GetScreenObscuredPercentage() > 0.45f) {
 			mat.SetScreenObscuredPercentage(goodSight);
 			Invoke("GainSight", goodSightDuration);
+		}*/
+		if (player)
+		{
+			mat.SetScreenObscuredPercentage(mat.GetScreenObscuredPercentage() + 0.05f);
 		}
 	}
 }
