@@ -31,7 +31,7 @@ public class CannonFire : MonoBehaviour {
 		if (!Network.isClient && !Network.isServer) {
 			return;
 		}
-		GameObject go = (GameObject)Network.Instantiate(cannonBall, _transform.position, _transform.rotation, 0);
+		GameObject go = (GameObject)PhotonNetwork.Instantiate("CannonBall", _transform.position, _transform.rotation, 0);
 		go.rigidbody.AddForce(go.transform.forward * FIRE_FORCE);
 	}
 }

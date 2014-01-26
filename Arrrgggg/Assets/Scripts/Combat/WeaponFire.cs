@@ -37,8 +37,8 @@ public class WeaponFire : Photon.MonoBehaviour {
 	}
 	
 	private void FireBullet() {
-		GameObject 		b = (GameObject)PhotonNetwork.Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
-		GameObject 		g = (GameObject)PhotonNetwork.Instantiate(muzzleFire, bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
+		GameObject 		b = (GameObject)PhotonNetwork.Instantiate("AARRRR", bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
+		GameObject 		g = (GameObject)PhotonNetwork.Instantiate("MuzzleFlash", bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
 
 		ParticleSystem	p = g.particleSystem;
 

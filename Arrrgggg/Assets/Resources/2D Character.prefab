@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5ea4ad1d1857a4987080f19d9446f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonHitParticle: CannonPlayerHit
+  cannonHitParticle: {fileID: 0}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
