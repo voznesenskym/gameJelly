@@ -110,19 +110,24 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		int randomSpawn = Random.Range (0, 3);
 		if (randomSpawn == 0) {
 			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint0, Quaternion.identity, 0);
-			((MonoBehaviour)myPlayerGo.GetComponent ("PlatformerCharacter2D")).enabled = true;
-			((MonoBehaviour)myPlayerGo.GetComponent ("Platformer2DUserControl")).enabled = true;
+			turnStuffOnAtInstantiationOfPlayer();
 		} else if (randomSpawn == 1){
 			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint1, Quaternion.identity, 0);
-			((MonoBehaviour)myPlayerGo.GetComponent ("PlatformerCharacter2D")).enabled = true;
-			((MonoBehaviour)myPlayerGo.GetComponent ("Platformer2DUserControl")).enabled = true;
+			turnStuffOnAtInstantiationOfPlayer();
 		} else if (randomSpawn == 2){
 			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
-			((MonoBehaviour)myPlayerGo.GetComponent ("PlatformerCharacter2D")).enabled = true;
-			((MonoBehaviour)myPlayerGo.GetComponent ("Platformer2DUserControl")).enabled = true;
+			turnStuffOnAtInstantiationOfPlayer();
 		}
 
 
+	}
+
+	void turnStuffOnAtInstantiationOfPlayer(){
+		((MonoBehaviour)myPlayerGo.GetComponent ("PlatformerCharacter2D")).enabled = true;
+		((MonoBehaviour)myPlayerGo.GetComponent ("Platformer2DUserControl")).enabled = true;
+		myPlayerGo.GetComponent<Animator>().enabled = true;
+		myPlayerGo.GetComponent<CircleCollider2D>().enabled = true;
+		myPlayerGo.GetComponent<SpriteRenderer>().enabled = true;
 	}
 
 	void Cleanup() {
