@@ -16,7 +16,6 @@ public class LightingManager : Singleton<LightingManager> {
 
 	public IEnumerator LerpIntensity(float rate, bool isOn) {
 		while (_isActive) {
-			Debug.Log("Waiting");
 			yield return null;
 		}
 		_isActive = true;
