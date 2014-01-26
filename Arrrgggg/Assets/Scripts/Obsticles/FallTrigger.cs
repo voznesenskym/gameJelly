@@ -24,6 +24,7 @@ public class FallTrigger : MonoBehaviour {
 				}
 			}
 			if (currentIndex > -1 ) {
+				LoseLife(other.gameObject);
 				LockPlayerInPlace(other.gameObject);
 				StartCoroutine(Respawn(other.gameObject, currentIndex));
 			}
@@ -43,6 +44,10 @@ public class FallTrigger : MonoBehaviour {
 				RendererSwitch(t.GetChild(i), isOn);
 			}
 		}
+	}
+
+	private void LoseLife(GameObject player) {
+		LifeManager.Instance.RemoveLifeFrom(player.GetInstanceID());
 	}
 
 	private IEnumerator Respawn(GameObject player, int index) {

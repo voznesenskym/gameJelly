@@ -109,6 +109,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: 5c97ba79ffc11134e9e68ba8c917f3ff, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c97ba79ffc11134e9e68ba8c917f3ff, type: 2}
   m_RootGameObject: {fileID: 723343335}
@@ -3509,6 +3513,10 @@ Prefab:
       propertyPath: m_SortingLayerID
       value: 1093696345
       objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: 8fcfce4bb47b73b43b364125851807bd, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fcfce4bb47b73b43b364125851807bd, type: 2}
   m_RootGameObject: {fileID: 1278572477}
@@ -4269,7 +4277,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 723343335}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!1 &750172460
@@ -4844,6 +4852,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bbeb9b21fb4bf7b43a5bf26fa1c14284, type: 2}
       propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: bbeb9b21fb4bf7b43a5bf26fa1c14284, type: 2}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -9145,7 +9157,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1278572477}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!1 &1289128557
@@ -9305,7 +9317,7 @@ MonoBehaviour:
   rightHealth: {fileID: 1212002592}
   leftHats: []
   rightHats: []
-  view: {fileID: 0}
+  view: {fileID: 1327852126}
   IsRightPlayer: 0
 --- !u!114 &1327852126
 MonoBehaviour:
@@ -9571,6 +9583,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6100000, guid: 30f10b08129fdca44bd9e7db4615aaa7, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 30f10b08129fdca44bd9e7db4615aaa7, type: 2}
   m_RootGameObject: {fileID: 1973482324}
@@ -9637,7 +9653,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1441083704}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!1 &1450052636
@@ -9654,6 +9670,7 @@ GameObject:
   - 81: {fileID: 1450052637}
   - 114: {fileID: 1450052642}
   - 82: {fileID: 1450052643}
+  - 114: {fileID: 1450052644}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9797,6 +9814,24 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1450052644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1450052636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 919493dc74c8795448381356b413585f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lossOfSightDuration: 5
+  goodSightDuration: 1
+  noSight: 0
+  normalSight: .5
+  goodSight: .699999988
+  player: {fileID: 0}
+  mat: {fileID: 0}
 --- !u!1 &1481532542
 GameObject:
   m_ObjectHideFlags: 0
@@ -13954,7 +13989,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1973482324}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 1, y: 1}
   m_Center: {x: 0, y: 0}
 --- !u!1 &1975013072

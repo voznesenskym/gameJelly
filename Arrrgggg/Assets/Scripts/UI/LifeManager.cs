@@ -31,7 +31,7 @@ public class LifeManager : Singleton<LifeManager> {
 	}
 
 	void Update() {
-		//Debug.Log("left " + _leftPlayerId + " right " + _rightPlayerId);
+		Debug.Log("left " + _leftPlayerId + " right " + _rightPlayerId);
 	}
 
 	public void RegisterPlayerLives() {
@@ -43,6 +43,10 @@ public class LifeManager : Singleton<LifeManager> {
 		view.RPC("SetPlayer", PhotonTargets.AllBuffered, new object[] {IsRightPlayer, id});
 	}
 
+	public void RemoveLifeFrom(int id) {
+		view.RPC("RemoveLife", PhotonTargets.All, new object[] {id});
+	}
+
 	[RPC]
 	public void SetPlayer(bool right, int id) {
 		if (right) {
@@ -51,6 +55,21 @@ public class LifeManager : Singleton<LifeManager> {
 		} else {
 			_leftPlayerId = id;
 			IsRightPlayer = true;
+		}
+	}
+
+	[RPC]
+	private void RemoveLife(int id) {
+		if (_leftPlayerId == id) {
+			if (leftHats.Count > 0) {
+				Destroy(leftHats[0]);
+				leftHats.RemoveAt(0);
+			}
+		} else if (_rightPlayerId == id) {
+			if (rightHats.Count > 0) {
+				Destroy(rightHats[0]);
+				rightHats.RemoveAt(0);
+			}
 		}
 	}
 }
