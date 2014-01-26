@@ -74,7 +74,6 @@ public class NetworkingManager : MonoBehaviour {
 			if (hostDataExists) {
 				for (int i = 0; i < hostData.Length; i++) {
 					if (GUI.Button(new Rect(buttonX, buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), hostData[i].gameName)){
-						//Network.Connect(HostData[] hostData);
 						Network.Connect(hostData[i]);
 					}				
 				}		
@@ -98,7 +97,6 @@ public class NetworkingManager : MonoBehaviour {
 	}
 	void startServer(){
 		bool useNat = !Network.HavePublicAddress();
-		Network.natFacilitatorIP = myExtIP;
 		Network.InitializeServer (connectionsAllowed, portNumber, useNat);
 		MasterServer.RegisterHost(gameName, "ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
 	}
