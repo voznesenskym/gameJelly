@@ -90,10 +90,13 @@ public class NetworkingManager : Photon.MonoBehaviour {
 					Cleanup();
 				}
 
-				if (hit.collider.name == "joinButton"){
-					for (int i = 0; i < roomInfo.Length; i++) {
-							PhotonNetwork.JoinRoom(roomInfo[i].name);
-					}
+				if (hit.collider.name == "Join"){
+					PhotonNetwork.JoinRoom(roomInfo[0].name);
+					joinButton.SetActive(false);
+					GameObject button = GameObject.Find ("StartServer");
+					GameObject button2 = GameObject.Find ("Connect");
+					button2.SetActive(false);
+					button.SetActive(false);
 				}
 			} else {
 				Debug.Log ("");
