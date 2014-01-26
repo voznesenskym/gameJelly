@@ -5,6 +5,8 @@ public class NetworkingManager : MonoBehaviour {
 	public GameObject spawnObject;
 	public Transform spawnPosition;
 
+	PlatformerCharacter2D character;
+
 	float buttonWidth;
 	float buttonHeight;
 
@@ -17,6 +19,7 @@ public class NetworkingManager : MonoBehaviour {
 	private bool hostDataExists;
 	private Vector3 spawnPositionPoint;
 	private bool connected;
+	private GameObject playerObject;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +32,8 @@ public class NetworkingManager : MonoBehaviour {
 		gameName = "Game Jam Pirate Sight Simulator";
 
 		spawnPositionPoint = spawnPosition.position;
+
+
 
 	}
 
@@ -71,8 +76,8 @@ public class NetworkingManager : MonoBehaviour {
 		if (connected) {
 			if (GUI.Button (new Rect (buttonX, buttonY, buttonWidth, buttonHeight), "Disconnect")) {
 				Debug.Log ("disconnecting");
-				disconnectFromServer();
 				connected = false;
+				Network.Disconnect();
 			};
 		}
 
@@ -100,10 +105,12 @@ public class NetworkingManager : MonoBehaviour {
 
 	}
 
-	void disconnectFromServer() {
-		Network.Disconnect();
-		Destroy (spawnObject);
-		//MasterServer.UnregisterHost();
+
+
+	void OnPlayerDisconnected(NetworkPlayer player) {
+		Debug.Log("Clean up after player " + player);
+		Network.RemoveRPCs(player);
+		Network.DestroyPlayerObjects(player);
 	}
 	
 	void OnMasterServerEvent (MasterServerEvent msEvent) {
@@ -125,6 +132,7 @@ public class NetworkingManager : MonoBehaviour {
 		showDisconnectButton ();
 		Debug.Log ("spawning");
 		Network.Instantiate (spawnObject, spawnPositionPoint, Quaternion.identity, 0);
+
 
 	}
 }
