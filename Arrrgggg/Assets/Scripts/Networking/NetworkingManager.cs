@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 
 public class NetworkingManager : Photon.MonoBehaviour {
-	public string spawnObject = "2D Character";
+	public string spawnObject = "2dSmoothingTest";
 	public Transform spawnPosition;
 	public int connectionsAllowed = 4, portNumber = 5843;
 
