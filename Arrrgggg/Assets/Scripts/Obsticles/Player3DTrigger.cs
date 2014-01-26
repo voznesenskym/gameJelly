@@ -3,28 +3,37 @@ using System.Collections;
 
 public class Player3DTrigger : MonoBehaviour {
 
-	public ParticleSystem cannonHitParticle;
+	public string cannonHitParticle = "CannonPlayerHit";
 
 	private Transform _transform;
+	private int particleCount;
 
 	void Awake() {
 		_transform = transform;
 		if (collider) {
 			collider.isTrigger = true;
 		}
+		particleCount = 0;
 	}
 
 	void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("CannonBall")) {
-			ParticleSystem ps =  (ParticleSystem)Network.Instantiate(cannonHitParticle, _transform.position, Quaternion.identity, 0);
-			Network.Destroy(other.gameObject);
+			if (particleCount < 4){
+				Debug.Log ("inside particle count");
+				GameObject ps =  (GameObject)PhotonNetwork.Instantiate(cannonHitParticle, _transform.position, Quaternion.identity, 0);
+				ParticleSystem p = ps.particleSystem; 
+				particleCount ++;
+				StartCoroutine(DestroyParticle(p));
+			}
+			PhotonNetwork.Destroy(other.gameObject);
 			//Destroy(other.gameObject);
-			StartCoroutine(DestroyParticle(ps));
+
 		}
 	}
 
 	private IEnumerator DestroyParticle(ParticleSystem ps) {
 		yield return new WaitForSeconds(1.5f);
+		particleCount --;
 		Destroy(ps);
 	}
 }
