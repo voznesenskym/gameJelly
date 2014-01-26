@@ -26,4 +26,5 @@ MonoBehaviour:
   - DestroyRpc
   - RemoveBullet
   - RegisterPlayerLives
+  - SetPlayer
   DisableAutoOpenWizard: 0

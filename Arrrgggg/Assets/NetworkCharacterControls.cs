@@ -14,7 +14,7 @@ public class NetworkCharacterControls : MonoBehaviour {
 	}
 
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-
+		Debug.Log ("here i am, fuck you like a hurricane");
 		if (stream.isWriting) {
 			//our player. we need to send our position to network
 
