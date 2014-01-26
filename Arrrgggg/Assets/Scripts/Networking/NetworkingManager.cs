@@ -114,14 +114,14 @@ public class NetworkingManager : Photon.MonoBehaviour {
 				refreshHostList();
 			}
 			if (hostDataExists) {
-				for (int i = 0; i < roomInfo.Length; i++) {
+				//for (int i = 0; i < roomInfo.Length; i++) {
 					//if (GUI.Button(new Rect(buttonX + (80 * i), buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), roomInfo[i].name)){
 					//	PhotonNetwork.JoinRoom(roomInfo[i].name);
 					//}	
-					joinButton.SetActive(true);
 
 
-				}		
+
+				//}		
 			}
 		}
 
@@ -154,6 +154,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 	void refreshHostList() {
 		roomInfo = PhotonNetwork.GetRoomList();
 		hostDataExists = true;
+		joinButton.SetActive(true);
 	}
 
 	void spawnPlayer () {
