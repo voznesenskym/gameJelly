@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections;
 
 public class WeaponFire : Photon.MonoBehaviour {
@@ -41,6 +42,8 @@ public class WeaponFire : Photon.MonoBehaviour {
 		GameObject 		g = (GameObject)PhotonNetwork.Instantiate("MuzzleFlash", bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
 
 		ParticleSystem	p = g.particleSystem;
+
+		Camera.main.GetComponent<SightController>().GoodSight();
 
 		StartCoroutine(MuzzleFlare (p));
 		p.Play();
