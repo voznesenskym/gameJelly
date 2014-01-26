@@ -1,17 +1,17 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(NetworkView))]
-public class AARRRR : MonoBehaviour {
+[RequireComponent(typeof(PhotonView))]
+public class AARRRR : Photon.MonoBehaviour {
 	
 	public	float	lifetime		=	4f;
 	public	float	speed			=	100f;
 	
 	private	float		_lifetimeTimer	=	0f;
-	private NetworkView	_view;
+	private PhotonView	_view;
 	
 	void Awake() {
-		_view	=	GetComponent<NetworkView>();	
+		_view	=	GetComponent<PhotonView>();	
 	}
 
 	void Start() {
@@ -43,15 +43,14 @@ public class AARRRR : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision) {
 		GameObject player	=	collision.gameObject;
 		
-		if (player.CompareTag("Player") && player.GetComponent<NetworkView>().isMine && !_view.isMine) {
+		if (player.CompareTag("Player") && player.GetComponent<PhotonView>().isMine && !_view.isMine) {
 			Camera.main.GetComponent<SightController>().LoseSight();
-			_view.RPC("RemoveBullet", RPCMode.AllBuffered);
+			_view.RPC("RemoveBullet", PhotonTargets.AllBuffered);
 		}
 	}
 
 	[RPC]
 	void RemoveBullet() {
-		Network.RemoveRPCs(_view.viewID);
 		Destroy(gameObject);
 	}
 }

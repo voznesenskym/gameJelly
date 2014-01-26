@@ -111,7 +111,7 @@ GameObject:
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
   - 61: {fileID: 6100000}
-  - 148: {fileID: 14800000}
+  - 114: {fileID: 11400010}
   m_Layer: 9
   m_Name: 2D Character
   m_TagString: Player
@@ -319,8 +319,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 400002}
-  bullet: {fileID: 100000, guid: 79076cfadf348844ba8d3b97b160a83c, type: 2}
-  muzzleFire: {fileID: 19800000, guid: a555dd2ba6a10fb4e911399330cff58a, type: 2}
+  bullet: AARRRR
+  muzzleFire: MuzzleFlash
   cooldown: 1
 --- !u!114 &11400004
 MonoBehaviour:
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5ea4ad1d1857a4987080f19d9446f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonHitParticle: {fileID: 19800000, guid: 3c1f0555cc3fd4e1d87382fbaa007f8f, type: 2}
+  cannonHitParticle: CannonPlayerHit
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -363,18 +363,26 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294966783
---- !u!148 &14800000
-NetworkView:
+--- !u!114 &11400010
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 400012}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 0
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 400012}
+  synchronization: 1
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: -1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

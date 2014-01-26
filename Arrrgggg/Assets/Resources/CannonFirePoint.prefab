@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: CannonFirePoint
   m_TagString: Untagged
@@ -96,8 +97,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb76b3fde2d16f9488bab053091308b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBall: {fileID: 100000, guid: b8e0cce0523b7554c98c4a524302c74b, type: 2}
-  cannonBlast: {fileID: 19800002}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 0
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 400004}
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

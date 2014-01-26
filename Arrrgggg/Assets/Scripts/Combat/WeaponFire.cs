@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class WeaponFire : MonoBehaviour {
+public class WeaponFire : Photon.MonoBehaviour {
 	
 	public  Transform	bulletSpawnPoint;
-	public  GameObject	bullet;
-	public ParticleSystem muzzleFire;
+	public  string		bullet 			=	"AARRRR";
+	public 	string 		muzzleFire		=	"MuzzleFire";
 	public  float		cooldown		=	2f;
 	
 	private Vector3		_forward;
@@ -18,15 +18,12 @@ public class WeaponFire : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		if (!bulletSpawnPoint)	bulletSpawnPoint		=	transform;
-		if (!bullet)			bullet					=	(GameObject)Resources.Load("AARRRR");
-		if (!muzzleFire)		muzzleFire				= 	(ParticleSystem)Resources.Load("MuzzleFire");
+		if (!bulletSpawnPoint)	bulletSpawnPoint = transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if ((CrossPlatformInput.GetButtonDown("Fire1") || CrossPlatformInput.GetAxis("Fire1") == 1) && !_isOnCooldown) {
-			
 			FireBullet();
 		}
 		
@@ -40,8 +37,10 @@ public class WeaponFire : MonoBehaviour {
 	}
 	
 	private void FireBullet() {
-		GameObject 		b = (GameObject)Network.Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
-		ParticleSystem 	p = (ParticleSystem)Network.Instantiate(muzzleFire, bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
+		GameObject 		b = (GameObject)PhotonNetwork.Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
+		GameObject 		g = (GameObject)PhotonNetwork.Instantiate(muzzleFire, bulletSpawnPoint.position, bulletSpawnPoint.rotation, 0);
+
+		ParticleSystem	p = g.particleSystem;
 
 		StartCoroutine(MuzzleFlare (p));
 		p.Play();
