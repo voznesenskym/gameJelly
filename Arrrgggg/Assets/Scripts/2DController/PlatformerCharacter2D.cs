@@ -90,6 +90,7 @@ public class PlatformerCharacter2D : MonoBehaviour
             // Add a vertical force to the player.
             anim.SetBool("Ground", false);
 			rigidbody2D.velocity = new Vector2(0, 15);
+			audio.PlayOneShot(audio.clip);
 			//rigidbody2D.AddForce(new Vector2(0f, jumpForce));
         }
 	}
