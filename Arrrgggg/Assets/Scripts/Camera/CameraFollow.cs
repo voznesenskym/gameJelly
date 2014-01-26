@@ -12,12 +12,12 @@ public class CameraFollow : MonoBehaviour
 
 
 	private Transform player;		// Reference to the player's transform.
-
+	private bool playerExists;
 
 	void Awake ()
 	{
 		// Setting up the reference.
-		player = GameObject.FindGameObjectWithTag("Player").transform;
+		//player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 
@@ -37,6 +37,10 @@ public class CameraFollow : MonoBehaviour
 
 	void Update ()
 	{
+		if (!playerExists) {
+			player = GameObject.FindGameObjectWithTag("Player").transform;
+			playerExists = true;
+		}
 		TrackPlayer();
 	}
 	
