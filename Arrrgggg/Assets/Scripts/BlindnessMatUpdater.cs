@@ -20,5 +20,9 @@ public class BlindnessMatUpdater : MonoBehaviour {
 		renderer.material.SetFloat("_ClearRadius", obscuration);
 		MaskObject.renderer.material.SetFloat("ClearRadius", obscuration);
 	}
+
+	public float GetScreenObscuredPercentage() {
+		return renderer.material.GetFloat("_ClearRadius");
+	}
 }
 	

@@ -575,9 +575,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b73704aed3f400459282b642b9f744c, type: 3}
+  m_Script: {fileID: 11500000, guid: a3264baeac8a84e72935f5e630dd8b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_InterpolationBackTime: .10000000000000001
+  m_ExtrapolationLimit: .5
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -613,7 +615,7 @@ MonoBehaviour:
   ownerId: 0
   group: 0
   prefixBackup: -1
-  observed: {fileID: 400012}
+  observed: {fileID: 11400010}
   synchronization: 2
   onSerializeTransformOption: 0
   onSerializeRigidBodyOption: 2

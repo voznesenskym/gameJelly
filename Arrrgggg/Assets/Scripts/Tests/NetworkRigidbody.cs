@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NetworkRigidbody : MonoBehaviour {
+public class NetworkRigidbody : Photon.MonoBehaviour {
 	
 	public double m_InterpolationBackTime = 0.1;
 	public double m_ExtrapolationLimit = 0.5;
@@ -10,9 +10,9 @@ public class NetworkRigidbody : MonoBehaviour {
 	{
 		internal double timestamp;
 		internal Vector3 pos;
-		internal Vector3 velocity;
+		internal Vector2 velocity;
 		internal Quaternion rot;
-		internal Vector3 angularVelocity;
+		internal float angularVelocity;
 	}
 	
 	// We store twenty states with "playback" information
@@ -20,15 +20,15 @@ public class NetworkRigidbody : MonoBehaviour {
 	// Keep track of what slots are used
 	int m_TimestampCount;
 	
-	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
+	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
 		// Send data to server
 		if (stream.isWriting)
 		{
-			Vector3 pos = rigidbody.position;
-			Quaternion rot = rigidbody.rotation;
-			Vector3 velocity = rigidbody.velocity;
-			Vector3 angularVelocity = rigidbody.angularVelocity;
+			Vector3 pos = rigidbody2D.transform.position;
+			Quaternion rot = rigidbody2D.transform.rotation;
+			Vector2 velocity = rigidbody2D.velocity;
+			float angularVelocity = rigidbody2D.angularVelocity;
 
 			stream.Serialize(ref pos);
 			stream.Serialize(ref velocity);
@@ -39,9 +39,9 @@ public class NetworkRigidbody : MonoBehaviour {
 		else
 		{
 			Vector3 pos = Vector3.zero;
-			Vector3 velocity = Vector3.zero;
+			Vector2 velocity = Vector2.zero;
 			Quaternion rot = Quaternion.identity;
-			Vector3 angularVelocity = Vector3.zero;
+			float angularVelocity = 0;
 			stream.Serialize(ref pos);
 			stream.Serialize(ref velocity);
 			stream.Serialize(ref rot);
@@ -82,7 +82,7 @@ public class NetworkRigidbody : MonoBehaviour {
 	// And only if no more data arrives we will use extra polation
 	void Update () {
 		// This is the target playback time of the rigid body
-		double interpolationTime = Network.time - m_InterpolationBackTime;
+		double interpolationTime = PhotonNetwork.time - m_InterpolationBackTime;
 		
 		// Use interpolation if the target playback time is present in the buffer
 		if (m_BufferedState[0].timestamp > interpolationTime)
@@ -125,13 +125,13 @@ public class NetworkRigidbody : MonoBehaviour {
 			// Don't extrapolation for more than 500 ms, you would need to do that carefully
 			if (extrapolationLength < m_ExtrapolationLimit)
 			{
-				float axisLength = extrapolationLength * latest.angularVelocity.magnitude * Mathf.Rad2Deg;
-				Quaternion angularRotation = Quaternion.AngleAxis(axisLength, latest.angularVelocity);
+				float axisLength = extrapolationLength * latest.angularVelocity * Mathf.Rad2Deg;
+				Quaternion angularRotation = Quaternion.AngleAxis(latest.angularVelocity, Vector3.forward);
 				
-				rigidbody.position = latest.pos + latest.velocity * extrapolationLength;
-				rigidbody.rotation = angularRotation * latest.rot;
-				rigidbody.velocity = latest.velocity;
-				rigidbody.angularVelocity = latest.angularVelocity;
+				rigidbody2D.transform.position = latest.pos + new Vector3(latest.velocity.x, latest.velocity.y) * extrapolationLength;
+				rigidbody2D.transform.rotation = angularRotation * latest.rot;
+				rigidbody2D.velocity = latest.velocity;
+				rigidbody2D.angularVelocity = latest.angularVelocity;
 			}
 		}
 	}
