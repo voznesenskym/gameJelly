@@ -14,6 +14,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 
 	float buttonX;
 	float buttonY;
+	GameObject myPlayerGo;
 
 	private string gameName;
 	private bool refreshing;
@@ -108,16 +109,20 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		showDisconnectButton ();
 		int randomSpawn = Random.Range (0, 3);
 		if (randomSpawn == 0) {
-			PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint0, Quaternion.identity, 0);		
+			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint0, Quaternion.identity, 0);
+			((MonoBehaviour)myPlayerGo.GetComponent ("PlatformerCharacter2D")).enabled = true;
+			((MonoBehaviour)myPlayerGo.GetComponent ("Platformer2DUserControl")).enabled = true;
 		} else if (randomSpawn == 1){
-			PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint1, Quaternion.identity, 0);
+			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint1, Quaternion.identity, 0);
+			((MonoBehaviour)myPlayerGo.GetComponent ("PlatformerCharacter2D")).enabled = true;
+			((MonoBehaviour)myPlayerGo.GetComponent ("Platformer2DUserControl")).enabled = true;
 		} else if (randomSpawn == 2){
-			PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
+			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
+			((MonoBehaviour)myPlayerGo.GetComponent ("PlatformerCharacter2D")).enabled = true;
+			((MonoBehaviour)myPlayerGo.GetComponent ("Platformer2DUserControl")).enabled = true;
 		}
-		Debug.Log (randomSpawn);
-		Debug.Log (spawnPositionPoint0);
-		Debug.Log (spawnPositionPoint1);
-		Debug.Log (spawnPositionPoint2);
+
+
 	}
 
 	void Cleanup() {
