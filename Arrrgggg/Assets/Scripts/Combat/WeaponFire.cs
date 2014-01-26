@@ -5,6 +5,7 @@ public class WeaponFire : MonoBehaviour {
 
 	public  Transform	bulletSpawnPoint;
 	public  GameObject	bullet;
+	public ParticleSystem muzzleFire;
 	public  float		cooldown		=	2f;
 
 	private Vector3		_forward;
@@ -19,11 +20,13 @@ public class WeaponFire : MonoBehaviour {
 	void Start () {
 		if (!bulletSpawnPoint)	bulletSpawnPoint		=	transform;
 		if (!bullet)			bullet					=	(GameObject)Resources.Load("AARRRR");
+		if (!muzzleFire)		muzzleFire				= 	(ParticleSystem)Resources.Load("MuzzleFire");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Fire1") && !_isOnCooldown) {
+		if ((CrossPlatformInput.GetButtonDown("Fire1") || CrossPlatformInput.GetAxis("Fire1") == 1) && !_isOnCooldown) {
+
 			FireBullet();
 		}
 
@@ -38,6 +41,8 @@ public class WeaponFire : MonoBehaviour {
 
 	private void FireBullet() {
 		GameObject b = (GameObject)Instantiate(bullet, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+		ParticleSystem p = (ParticleSystem)Instantiate(muzzleFire, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+		p.Play();
 		b.transform.right	=	_forward;
 
 		_isOnCooldown			=	true;

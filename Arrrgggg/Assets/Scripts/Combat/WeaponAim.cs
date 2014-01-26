@@ -28,6 +28,12 @@ public class WeaponAim : MonoBehaviour {
 	void Update () {
 		Vector3 	armForward	=	arm.right;
 		Vector3		toPoint		=	mainCamera.ScreenToWorldPoint(Input.mousePosition).XY() - arm.position;
+		Vector3		toPointJoy		=	new Vector3(CrossPlatformInput.GetAxis("JoyRX"),
+		                                CrossPlatformInput.GetAxis("JoyRY") * -1, 0).normalized;
+		Debug.Log(toPointJoy);
+		if (toPointJoy.sqrMagnitude > 0) {
+			toPoint = toPointJoy;
+		}
 		Vector3		fireAt;
 
 		if ((controller.IsFacingRight	&&	!_isFacingRight) ||

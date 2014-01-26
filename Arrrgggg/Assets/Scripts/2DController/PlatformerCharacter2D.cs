@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlatformerCharacter2D : MonoBehaviour 
 {
 	bool facingRight = true;							// For determining which way the player is currently facing.
 
 	[SerializeField] float maxSpeed = 10f;				// The fastest the player can travel in the x axis.
-	[SerializeField] float jumpForce = 400f;			// Amount of force added when the player jumps.	
+	[SerializeField] float jumpForce = 200f;			// Amount of force added when the player jumps.	
 
 	[Range(0, 1)]
 	[SerializeField] float crouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -19,6 +20,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	Transform ceilingCheck;								// A position marking where to check for ceilings
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
 	Animator anim;										// Reference to the player's animator component.
+	private int jumpCount = 0;
 
 	public bool IsFacingRight {
 		get	{ return facingRight; }
@@ -46,8 +48,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	public void Move(float move, bool crouch, bool jump)
 	{
-
-
 		// If crouching, check to see if the character can stand up
 		if(!crouch && anim.GetBool("Crouch"))
 		{
@@ -82,11 +82,23 @@ public class PlatformerCharacter2D : MonoBehaviour
 		}
 
         // If the player should jump...
-        if (grounded && jump) {
+        if (jump && jumpCount < 2) {
+			++jumpCount;
+			if (jumpCount > 1) {
+				StartCoroutine(ResetJumpCount());
+			}
             // Add a vertical force to the player.
             anim.SetBool("Ground", false);
-            rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+			rigidbody2D.velocity = new Vector2(0, 15);
+			//rigidbody2D.AddForce(new Vector2(0f, jumpForce));
         }
+	}
+
+	private IEnumerator ResetJumpCount() {
+		while (!grounded) {
+			yield return null;
+		}
+		jumpCount = 0;
 	}
 
 	
