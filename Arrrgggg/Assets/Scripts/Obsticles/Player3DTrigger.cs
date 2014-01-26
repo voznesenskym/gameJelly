@@ -17,15 +17,11 @@ public class Player3DTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Debug.Log ("fuck these balls");
 		if (other.CompareTag("CannonBall")) {
-			if (particleCount < 4){
-				Debug.Log ("inside particle count");
-				GameObject ps =  (GameObject)PhotonNetwork.Instantiate(cannonHitParticle, _transform.position, Quaternion.identity, 0);
-				ParticleSystem p = ps.particleSystem; 
-				particleCount ++;
-				StartCoroutine(DestroyParticle(p));
-			}
+			GameObject ps =  (GameObject)PhotonNetwork.Instantiate(cannonHitParticle, _transform.position, Quaternion.identity, 0);
+			ParticleSystem p = ps.particleSystem; 
+			particleCount ++;
+			StartCoroutine(DestroyParticle(p));
 			if (other && other.gameObject) PhotonNetwork.Destroy(other.gameObject);
 			//Destroy(other.gameObject);
 
