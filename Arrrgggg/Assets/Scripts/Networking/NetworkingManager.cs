@@ -125,7 +125,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		GameObject[] myPlayer = GameObject.FindGameObjectsWithTag ("Player");
 		//if (myPlayer) Destroy (myPlayer);
 		foreach (GameObject player in myPlayer) {
-			PhotonNetwork.Destroy(player);
+			Destroy(player);
 		}
 	}
 }
