@@ -70,8 +70,7 @@ public class Player3DTrigger : MonoBehaviour {
 	}
 	
 	private IEnumerator Respawn() {
-
-
+		DieSound();
 		yield return StartCoroutine(SplatPlayer());
 		LoseLife();
 		int r = Random.Range(0, respawnPoints.Length);
