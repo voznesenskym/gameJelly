@@ -85,11 +85,6 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		PhotonNetwork.CreateRoom(gameName);
 	}
 
-	void OnCreatedRoom () {
-		Debug.Log ("server Initialized");
-		spawnPlayer ();
-	}
-
 	void OnJoinedRoom () {
 		spawnPlayer ();
 
