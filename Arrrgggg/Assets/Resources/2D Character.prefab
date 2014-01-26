@@ -392,7 +392,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 400004}
-  synchronization: 3
+  synchronization: 2
   onSerializeTransformOption: 1
   onSerializeRigidBodyOption: 2
   instantiationId: -1
@@ -412,7 +412,7 @@ MonoBehaviour:
   group: 0
   prefixBackup: -1
   observed: {fileID: 11400010}
-  synchronization: 3
+  synchronization: 2
   onSerializeTransformOption: 0
   onSerializeRigidBodyOption: 2
   instantiationId: -1

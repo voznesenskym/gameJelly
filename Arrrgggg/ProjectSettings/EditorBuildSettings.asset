@@ -5,9 +5,5 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/lighting.unity
-  - enabled: 0
-    path: Assets/Scenes/s.unity
   - enabled: 1
-    path: Assets/Scenes/shipbuildingJason.unity
+    path: Assets/Scenes/s2.unity
