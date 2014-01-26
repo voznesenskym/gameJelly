@@ -132,6 +132,8 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		myPlayerGo.GetComponent<Animator>().enabled = true;
 		myPlayerGo.GetComponent<CircleCollider2D>().enabled = true;
 		myPlayerGo.GetComponent<SpriteRenderer>().enabled = true;
+
+		if (myPlayerGo.GetPhotonView() && !myPlayerGo.GetPhotonView().isMine) myPlayerGo.GetComponentInChildren<BlindnessMatUpdater>().gameObject.SetActive(false);
 	}
 	
 	

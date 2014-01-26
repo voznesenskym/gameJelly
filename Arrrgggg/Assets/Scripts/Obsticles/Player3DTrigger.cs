@@ -26,6 +26,7 @@ public class Player3DTrigger : MonoBehaviour {
 	}
 
 	void Start() {
+		_view = GetComponent<PhotonView>();
 		_yells = new AudioClip[deathYellCount];
 		_source = GetComponent<AudioSource>();
 		for (int i = 0, count = deathYellCount; i < count; ++i) {
