@@ -119,7 +119,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 			turnStuffOnAtInstantiationOfPlayer();
 		}
 
-		if (LifeManager.Instance != null) LifeManager.Instance.RegisterPlayerLives();
+		StartCoroutine(RegisterLives());
 	}
 
 	void turnStuffOnAtInstantiationOfPlayer(){
@@ -130,6 +130,10 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		myPlayerGo.GetComponent<SpriteRenderer>().enabled = true;
 	}
 
+
+	
+
+	
 	void Cleanup() {
 		//GameObject myPlayer = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<PhotonView>().isMine == true).FirstOrDefault();
 		GameObject[] myPlayer = GameObject.FindGameObjectsWithTag ("Player");
@@ -137,5 +141,10 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		foreach (GameObject player in myPlayer) {
 			Destroy(player);
 		}
+	}
+
+	IEnumerator RegisterLives() {
+		yield return null;
+		if (LifeManager.Instance != null) LifeManager.Instance.RegisterPlayerLives();
 	}
 }
