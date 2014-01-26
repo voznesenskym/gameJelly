@@ -6,6 +6,7 @@ public class NetworkingManager : MonoBehaviour {
 	public GameObject spawnObject;
 	public Transform spawnPosition;
 
+
 	PlatformerCharacter2D character;
 
 	float buttonWidth;
@@ -18,7 +19,9 @@ public class NetworkingManager : MonoBehaviour {
 	private bool refreshing;
 	private HostData[] hostData;
 	private bool hostDataExists;
-	private Vector3 spawnPositionPoint;
+	private Vector3 spawnPositionPoint0;
+	private Vector3 spawnPositionPoint1;
+	private Vector3 spawnPositionPoint2;
 	private bool connected;
 	private GameObject playerObject;
 
@@ -32,9 +35,9 @@ public class NetworkingManager : MonoBehaviour {
 
 		gameName = "Game Jam Pirate Sight Simulator";
 
-		spawnPositionPoint = spawnPosition.position;
-
-
+		spawnPositionPoint0 = spawnPosition.position;
+		spawnPositionPoint1 = new Vector3 (spawnPosition.position.x + 5.0f, spawnPosition.position.y, spawnPosition.position.z);
+		spawnPositionPoint2 = new Vector3 (spawnPosition.position.x + 10.0f, spawnPosition.position.y, spawnPosition.position.z);
 
 	}
 
@@ -107,6 +110,7 @@ public class NetworkingManager : MonoBehaviour {
 	}
 
 	void OnPlayerDisconnected(NetworkPlayer player) {
+		Debug.Log ("removed Player");
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
 	}
@@ -128,11 +132,26 @@ public class NetworkingManager : MonoBehaviour {
 	void spawnPlayer () {
 		connected = true;
 		showDisconnectButton ();
-		Network.Instantiate (spawnObject, spawnPositionPoint, Quaternion.identity, 0);
+		int randomSpawn = Random.Range (0, 3);
+		if (randomSpawn == 0) {
+			Network.Instantiate (spawnObject, spawnPositionPoint0, Quaternion.identity, 0);		
+		} else if (randomSpawn == 1){
+			Network.Instantiate (spawnObject, spawnPositionPoint1, Quaternion.identity, 0);
+		} else if (randomSpawn == 2){
+			Network.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
+		}
+		Debug.Log (randomSpawn);
+		Debug.Log (spawnPositionPoint0);
+		Debug.Log (spawnPositionPoint1);
+		Debug.Log (spawnPositionPoint2);
 	}
 
 	void Cleanup() {
-		GameObject myPlayer = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<NetworkView>().isMine == true).FirstOrDefault();
-		if (myPlayer) Destroy (myPlayer);
+		//GameObject myPlayer = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<NetworkView>().isMine == true).FirstOrDefault();
+		GameObject[] myPlayer = GameObject.FindGameObjectsWithTag ("Player");
+		//if (myPlayer) Destroy (myPlayer);
+		foreach (GameObject player in myPlayer) {
+			Destroy(player);
+		}
 	}
 }

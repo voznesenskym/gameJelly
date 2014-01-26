@@ -241,8 +241,13 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 0
+=======
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
+>>>>>>> 7a0364a68d3395e9b6533b1d85caa68b2885e07e
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d5ea4ad1d1857a4987080f19d9446f7, type: 3}
   m_Name: 
