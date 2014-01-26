@@ -39,7 +39,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 100000}
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   synchronization: 1
   onSerializeTransformOption: 3
   onSerializeRigidBodyOption: 2
-  instantiationId: 0
+  instantiationId: -1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

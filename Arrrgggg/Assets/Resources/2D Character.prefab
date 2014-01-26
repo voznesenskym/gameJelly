@@ -112,7 +112,6 @@ GameObject:
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
   - 61: {fileID: 6100000}
-  - 114: {fileID: 11400010}
   - 114: {fileID: 11400014}
   m_Layer: 9
   m_Name: 2D Character
@@ -365,26 +364,6 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4294966783
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  subId: 0
-  ownerId: 0
-  group: 0
-  prefixBackup: -1
-  observed: {fileID: 9500000}
-  synchronization: 2
-  onSerializeTransformOption: 0
-  onSerializeRigidBodyOption: 2
-  instantiationId: -1
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -404,7 +383,7 @@ MonoBehaviour:
   synchronization: 3
   onSerializeTransformOption: 1
   onSerializeRigidBodyOption: 2
-  instantiationId: 0
+  instantiationId: -1
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -424,7 +403,7 @@ MonoBehaviour:
   synchronization: 3
   onSerializeTransformOption: 0
   onSerializeRigidBodyOption: 2
-  instantiationId: 0
+  instantiationId: -1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
