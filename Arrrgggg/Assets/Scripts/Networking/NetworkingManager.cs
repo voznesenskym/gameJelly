@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class NetworkingManager : MonoBehaviour {
 	public GameObject spawnObject;
@@ -78,6 +79,7 @@ public class NetworkingManager : MonoBehaviour {
 				Debug.Log ("disconnecting");
 				connected = false;
 				Network.Disconnect();
+				Cleanup();
 			};
 		}
 
@@ -102,13 +104,9 @@ public class NetworkingManager : MonoBehaviour {
 	}
 
 	void showDisconnectButton(){
-
 	}
 
-
-
 	void OnPlayerDisconnected(NetworkPlayer player) {
-		Debug.Log("Clean up after player " + player);
 		Network.RemoveRPCs(player);
 		Network.DestroyPlayerObjects(player);
 	}
@@ -130,9 +128,11 @@ public class NetworkingManager : MonoBehaviour {
 	void spawnPlayer () {
 		connected = true;
 		showDisconnectButton ();
-		Debug.Log ("spawning");
 		Network.Instantiate (spawnObject, spawnPositionPoint, Quaternion.identity, 0);
+	}
 
-
+	void Cleanup() {
+		GameObject myPlayer = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<NetworkView>().isMine == true).FirstOrDefault();
+		if (myPlayer) Destroy (myPlayer);
 	}
 }
