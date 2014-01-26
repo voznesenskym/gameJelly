@@ -15,7 +15,7 @@ public class CannonController : Singleton<CannonController> {
 
 	private IEnumerator FireCannon() {
 		float t = 0;
-		while (true) {
+		while (PhotonNetwork.isMasterClient) {
 			while (PhotonNetwork.room == null) yield return null;
 			if (t > FIRE_RATE) {
 				OnFireCannonEvent();
