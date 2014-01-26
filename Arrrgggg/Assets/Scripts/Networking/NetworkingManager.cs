@@ -98,7 +98,7 @@ public class NetworkingManager : MonoBehaviour {
 	}
 	void startServer(){
 		bool useNat = !Network.HavePublicAddress();
-		Network.natFacilitatorIP = CheckIP();
+		Network.natFacilitatorIP = myExtIP;
 		Network.InitializeServer (connectionsAllowed, portNumber, useNat);
 		MasterServer.RegisterHost(gameName, "ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
 	}
