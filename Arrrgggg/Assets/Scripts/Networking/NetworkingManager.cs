@@ -1,13 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Linq;
 
-public class NetworkingManager : MonoBehaviour {
-	public GameObject spawnObject;
+public class NetworkingManager : Photon.MonoBehaviour {
+	public string spawnObject = "2D Character";
 	public Transform spawnPosition;
 	public int connectionsAllowed = 4, portNumber = 5843;
-
-	private string myExtIP = "";
 
 	PlatformerCharacter2D character;
 
@@ -19,7 +17,7 @@ public class NetworkingManager : MonoBehaviour {
 
 	private string gameName;
 	private bool refreshing;
-	private HostData[] hostData;
+	private RoomInfo[] roomInfo;
 	private bool hostDataExists;
 	private Vector3 spawnPositionPoint0;
 	private Vector3 spawnPositionPoint1;
@@ -41,28 +39,16 @@ public class NetworkingManager : MonoBehaviour {
 		spawnPositionPoint1 = new Vector3 (spawnPosition.position.x + 5.0f, spawnPosition.position.y, spawnPosition.position.z);
 		spawnPositionPoint2 = new Vector3 (spawnPosition.position.x + 10.0f, spawnPosition.position.y, spawnPosition.position.z);
 
-		StartCoroutine(CheckIP());
-
+		PhotonNetwork.ConnectUsingSettings("v1.0");
 	}
 
-	void Update (){
-		if (refreshing) {
-			if (MasterServer.PollHostList().Length > 0){
-				refreshing = false;
-				hostDataExists = true;
-				Debug.Log (MasterServer.PollHostList().Length);
-				hostData = MasterServer.PollHostList();
-			}		
-		}
-	}
-	
 	// Update is called once per frame
 	void OnGUI (){
 		enableUI ();
 	}
 	void enableUI(){
 
-		if (!Network.isClient && !Network.isServer){
+		if (!PhotonNetwork.isNonMasterClientInRoom && !PhotonNetwork.isMasterClient){
 			if (GUI.Button (new Rect (buttonX, buttonY, buttonWidth, buttonHeight), "Start Server")) {
 				Debug.Log ("Starting Server");
 				startServer();
@@ -72,9 +58,9 @@ public class NetworkingManager : MonoBehaviour {
 				refreshHostList();
 			}
 			if (hostDataExists) {
-				for (int i = 0; i < hostData.Length; i++) {
-					if (GUI.Button(new Rect(buttonX, buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), hostData[i].gameName)){
-						Network.Connect(hostData[i]);
+				for (int i = 0; i < roomInfo.Length; i++) {
+					if (GUI.Button(new Rect(buttonX, buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), roomInfo[i].name)){
+						PhotonNetwork.JoinRoom(roomInfo[i].name);
 					}				
 				}		
 			}
@@ -85,28 +71,26 @@ public class NetworkingManager : MonoBehaviour {
 				Debug.Log ("disconnecting");
 				connected = false;
 
-				if (Network.isServer) {
+				if (PhotonNetwork.isMasterClient) {
 					// TODO on server close clean up everyone
 				}
 
-				Network.Disconnect();
+				PhotonNetwork.Disconnect();
 				Cleanup();
 			};
 		}
 
 	}
 	void startServer(){
-		bool useNat = !Network.HavePublicAddress();
-		Network.InitializeServer (connectionsAllowed, portNumber, useNat);
-		MasterServer.RegisterHost(gameName, "ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
+		PhotonNetwork.CreateRoom(gameName);
 	}
 
-	void OnServerInitialized () {
+	void OnCreatedRoom () {
 		Debug.Log ("server Initialized");
 		spawnPlayer ();
 	}
 
-	void OnConnectedToServer () {
+	void OnJoinedRoom () {
 		spawnPlayer ();
 
 	}
@@ -118,24 +102,9 @@ public class NetworkingManager : MonoBehaviour {
 	void showDisconnectButton(){
 	}
 
-	void OnPlayerDisconnected(NetworkPlayer player) {
-		Debug.Log ("removed Player");
-		Network.RemoveRPCs(player);
-		Network.DestroyPlayerObjects(player);
-	}
-	
-	void OnMasterServerEvent (MasterServerEvent msEvent) {
-		if (msEvent == MasterServerEvent.RegistrationSucceeded){
-			Debug.Log ("registered Server");
-		}
-
-	}
-
-	void refreshHostList(){
-		MasterServer.RequestHostList (gameName);
-		//yield return new WaitForSeconds(3);
-		//Debug.Log (MasterServer.PollHostList ().Length);
-		refreshing = true;
+	void refreshHostList() {
+		roomInfo = PhotonNetwork.GetRoomList();
+		hostDataExists = true;
 	}
 
 	void spawnPlayer () {
@@ -143,11 +112,11 @@ public class NetworkingManager : MonoBehaviour {
 		showDisconnectButton ();
 		int randomSpawn = Random.Range (0, 3);
 		if (randomSpawn == 0) {
-			Network.Instantiate (spawnObject, spawnPositionPoint0, Quaternion.identity, 0);		
+			PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint0, Quaternion.identity, 0);		
 		} else if (randomSpawn == 1){
-			Network.Instantiate (spawnObject, spawnPositionPoint1, Quaternion.identity, 0);
+			PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint1, Quaternion.identity, 0);
 		} else if (randomSpawn == 2){
-			Network.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
+			PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
 		}
 		Debug.Log (randomSpawn);
 		Debug.Log (spawnPositionPoint0);
@@ -156,21 +125,11 @@ public class NetworkingManager : MonoBehaviour {
 	}
 
 	void Cleanup() {
-		//GameObject myPlayer = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<NetworkView>().isMine == true).FirstOrDefault();
+		//GameObject myPlayer = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<PhotonView>().isMine == true).FirstOrDefault();
 		GameObject[] myPlayer = GameObject.FindGameObjectsWithTag ("Player");
 		//if (myPlayer) Destroy (myPlayer);
 		foreach (GameObject player in myPlayer) {
 			Destroy(player);
 		}
-	}
-
-	IEnumerator CheckIP(){
-		WWW myExtIPWWW = new WWW("http://checkip.dyndns.org");
-		if(myExtIPWWW==null) yield break;
-		yield return myExtIPWWW;
-		myExtIP=myExtIPWWW.data;
-		myExtIP=myExtIP.Substring(myExtIP.IndexOf(":")+1);
-		myExtIP=myExtIP.Substring(0,myExtIP.IndexOf("<"));
-		
 	}
 }
