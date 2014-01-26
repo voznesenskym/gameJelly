@@ -3,9 +3,11 @@ using System.Collections;
 using System.Linq;
 
 public class NetworkingManager : Photon.MonoBehaviour {
-	public string spawnObject = "2dSmoothingTest";
+	public string spawnObject = "2D Character";
 	public Transform spawnPosition;
 	public int connectionsAllowed = 4, portNumber = 5843;
+
+	GameObject objectToSpawn;
 
 	PlatformerCharacter2D character;
 
@@ -41,6 +43,8 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		spawnPositionPoint2 = new Vector3 (spawnPosition.position.x + 10.0f, spawnPosition.position.y, spawnPosition.position.z);
 
 		PhotonNetwork.ConnectUsingSettings("v1.0");
+
+		objectToSpawn = (GameObject)Resources.Load (spawnObject);
 	}
 
 	// Update is called once per frame
@@ -109,13 +113,13 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		showDisconnectButton ();
 		int randomSpawn = Random.Range (0, 3);
 		if (randomSpawn == 0) {
-			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint0, Quaternion.identity, 0);
+			myPlayerGo = (GameObject)Instantiate (objectToSpawn, spawnPositionPoint0, Quaternion.identity);
 			turnStuffOnAtInstantiationOfPlayer();
 		} else if (randomSpawn == 1){
-			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint1, Quaternion.identity, 0);
+			myPlayerGo = (GameObject)Instantiate (objectToSpawn, spawnPositionPoint1, Quaternion.identity);
 			turnStuffOnAtInstantiationOfPlayer();
 		} else if (randomSpawn == 2){
-			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
+			myPlayerGo = (GameObject)Instantiate (objectToSpawn, spawnPositionPoint2, Quaternion.identity);
 			turnStuffOnAtInstantiationOfPlayer();
 		}
 
@@ -147,4 +151,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		yield return null;
 		if (LifeManager.Instance != null) LifeManager.Instance.RegisterPlayerLives();
 	}
+
+
+
 }
