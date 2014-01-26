@@ -51,13 +51,11 @@ public class Player3DTrigger : MonoBehaviour {
 	}
 
 	private void LockPlayerInPlace() {
-		Debug.Log("lock");
 		player.GetComponent<Platformer2DUserControl>().enabled = false;
 		player.rigidbody2D.Sleep();
 	}
 	
 	private IEnumerator SplatPlayer() {
-		Debug.Log("Splat");
 		float t = 0;
 		float duration = 2;
 		while (t < duration) {
