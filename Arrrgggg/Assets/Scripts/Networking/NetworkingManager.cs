@@ -118,8 +118,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 			myPlayerGo = PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
 			turnStuffOnAtInstantiationOfPlayer();
 		}
-
-		if (LifeManager.Instance != null) LifeManager.Instance.RegisterPlayerLives();
+		StartCoroutine(RegisterLives());
 	}
 
 	void turnStuffOnAtInstantiationOfPlayer(){
@@ -137,5 +136,10 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		foreach (GameObject player in myPlayer) {
 			Destroy(player);
 		}
+	}
+
+	IEnumerator RegisterLives() {
+		yield return null;
+		if (LifeManager.Instance != null) LifeManager.Instance.RegisterPlayerLives();
 	}
 }
