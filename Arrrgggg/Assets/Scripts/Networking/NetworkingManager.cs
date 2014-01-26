@@ -5,7 +5,9 @@ using System.Linq;
 public class NetworkingManager : MonoBehaviour {
 	public GameObject spawnObject;
 	public Transform spawnPosition;
-	public int connectionsAllowed = 4, portNumber = 2300;
+	public int connectionsAllowed = 4, portNumber = 5843;
+
+	private string myExtIP = "";
 
 	PlatformerCharacter2D character;
 
@@ -38,6 +40,8 @@ public class NetworkingManager : MonoBehaviour {
 		spawnPositionPoint0 = spawnPosition.position;
 		spawnPositionPoint1 = new Vector3 (spawnPosition.position.x + 5.0f, spawnPosition.position.y, spawnPosition.position.z);
 		spawnPositionPoint2 = new Vector3 (spawnPosition.position.x + 10.0f, spawnPosition.position.y, spawnPosition.position.z);
+
+		StartCoroutine(CheckIP());
 
 	}
 
@@ -94,8 +98,9 @@ public class NetworkingManager : MonoBehaviour {
 	}
 	void startServer(){
 		bool useNat = !Network.HavePublicAddress();
+		Network.natFacilitatorIP = myExtIP;
 		Network.InitializeServer (connectionsAllowed, portNumber, useNat);
-		MasterServer.RegisterHost(gameName,"ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
+		MasterServer.RegisterHost(gameName, "ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
 	}
 
 	void OnServerInitialized () {
@@ -159,5 +164,15 @@ public class NetworkingManager : MonoBehaviour {
 		foreach (GameObject player in myPlayer) {
 			Destroy(player);
 		}
+	}
+
+	IEnumerator CheckIP(){
+		WWW myExtIPWWW = new WWW("http://checkip.dyndns.org");
+		if(myExtIPWWW==null) yield break;
+		yield return myExtIPWWW;
+		myExtIP=myExtIPWWW.data;
+		myExtIP=myExtIP.Substring(myExtIP.IndexOf(":")+1);
+		myExtIP=myExtIP.Substring(0,myExtIP.IndexOf("<"));
+		
 	}
 }
