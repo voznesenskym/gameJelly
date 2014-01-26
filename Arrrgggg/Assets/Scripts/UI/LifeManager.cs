@@ -31,7 +31,7 @@ public class LifeManager : Singleton<LifeManager> {
 	}
 
 	void Update() {
-		Debug.Log("left " + _leftPlayerId + " right " + _rightPlayerId);
+		//Debug.Log("left " + _leftPlayerId + " right " + _rightPlayerId);
 	}
 
 	public void RegisterPlayerLives() {
