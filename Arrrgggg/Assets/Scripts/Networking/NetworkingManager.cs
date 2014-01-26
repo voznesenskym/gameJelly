@@ -126,10 +126,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		((MonoBehaviour)myPlayerGo.GetComponent ("PlatformerCharacter2D")).enabled = true;
 		((MonoBehaviour)myPlayerGo.GetComponent ("Platformer2DUserControl")).enabled = true;
 		myPlayerGo.GetComponent<Animator>().enabled = true;
-		myPlayerGo.GetComponent<BoxCollider2D>().enabled = true;
-		myPlayerGo.GetComponent<CircleCollider2D>().enabled = true;
-		myPlayerGo.GetComponent<SpriteRenderer>().enabled = true;
-		myPlayerGo.GetComponent<AudioSource>().enabled = true;
+
 	}
 
 	void Cleanup() {
