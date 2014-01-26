@@ -94,8 +94,9 @@ public class NetworkingManager : MonoBehaviour {
 	}
 	void startServer(){
 		bool useNat = !Network.HavePublicAddress();
+		Network.natFacilitatorIP = CheckIP();
 		Network.InitializeServer (connectionsAllowed, portNumber, useNat);
-		MasterServer.RegisterHost(gameName,"ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
+		MasterServer.RegisterHost(gameName, "ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
 	}
 
 	void OnServerInitialized () {
@@ -159,5 +160,15 @@ public class NetworkingManager : MonoBehaviour {
 		foreach (GameObject player in myPlayer) {
 			Destroy(player);
 		}
+	}
+
+	string CheckIP(){
+		myExtIPWWW = WWW("http://checkip.dyndns.org");
+		if(myExtIPWWW==null) return;
+		yield myExtIPWWW;
+		string myExtIP=myExtIPWWW.data;
+		myExtIP=myExtIP.Substring(myExtIP.IndexOf(":")+1);
+		myExtIP=myExtIP.Substring(0,myExtIP.IndexOf("<"));
+		
 	}
 }
