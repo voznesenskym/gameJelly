@@ -40,18 +40,16 @@ public class LifeManager : Singleton<LifeManager> {
 
 		int id = go.GetInstanceID();
 
-		if (_leftPlayerId == id || _rightPlayerId == id) return;
-
 		view.RPC("SetPlayer", PhotonTargets.AllBuffered, new object[] {IsRightPlayer, id});
 	}
 
 	[RPC]
 	public void SetPlayer(bool right, int id) {
-			if (right) {
-				_rightPlayerId = id;
+		if (right) {
+			_rightPlayerId = id;
 			IsRightPlayer = true;
 		} else {
-				_leftPlayerId = id;
+			_leftPlayerId = id;
 			IsRightPlayer = false;
 		}
 	}
