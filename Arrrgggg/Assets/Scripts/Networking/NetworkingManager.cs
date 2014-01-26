@@ -33,7 +33,7 @@ public class NetworkingManager : MonoBehaviour {
 		buttonWidth = Screen.width * .1f;
 		buttonHeight = Screen.width * .1f;
 
-		gameName = "Game Jam Pirate Sight Simulator";
+		gameName = "Blind Pirate Fight";
 
 		spawnPositionPoint0 = spawnPosition.position;
 		spawnPositionPoint1 = new Vector3 (spawnPosition.position.x + 5.0f, spawnPosition.position.y, spawnPosition.position.z);
@@ -81,6 +81,11 @@ public class NetworkingManager : MonoBehaviour {
 			if (GUI.Button (new Rect (buttonX, buttonY, buttonWidth, buttonHeight), "Disconnect")) {
 				Debug.Log ("disconnecting");
 				connected = false;
+
+				if (Network.isServer) {
+					// TODO on server close clean up everyone
+				}
+
 				Network.Disconnect();
 				Cleanup();
 			};
