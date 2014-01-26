@@ -35,8 +35,8 @@ public class AARRRR : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision) {
 		GameObject player	=	collision.gameObject;
 		
-		if (player.CompareTag("Player") && player.GetComponent<NetworkView>().isMine && _view.isMine) {
-			// TODO lights out
+		if (player.CompareTag("Player") && player.GetComponent<NetworkView>().isMine && !_view.isMine) {
+			player.GetComponent<SightController>().LoseSight();
 		}
 	}
 }
