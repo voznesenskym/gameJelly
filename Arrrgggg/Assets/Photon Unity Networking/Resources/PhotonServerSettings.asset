@@ -25,4 +25,5 @@ MonoBehaviour:
   - OnAwakeRPC
   - DestroyRpc
   - RemoveBullet
+  - RegisterPlayerLives
   DisableAutoOpenWizard: 0

@@ -8887,6 +8887,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1327852124}
   - 114: {fileID: 1327852125}
+  - 114: {fileID: 1327852126}
   m_Layer: 8
   m_Name: GUI
   m_TagString: Untagged
@@ -8922,6 +8923,28 @@ MonoBehaviour:
   rightHealth: {fileID: 1212002592}
   leftHats: []
   rightHats: []
+  view: {fileID: 0}
+  IsRightPlayer: 0
+--- !u!114 &1327852126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327852123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 1
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 1327852125}
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
 --- !u!1 &1334752859
 GameObject:
   m_ObjectHideFlags: 0
@@ -9240,7 +9263,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: be8ce5efaa8739c49aed0233ebe4748d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .75
   m_Pitch: 1
   Loop: 1
   Mute: 0
