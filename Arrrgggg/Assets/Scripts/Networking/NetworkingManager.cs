@@ -71,7 +71,7 @@ public class NetworkingManager : MonoBehaviour {
 				for (int i = 0; i < hostData.Length; i++) {
 					if (GUI.Button(new Rect(buttonX, buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), hostData[i].gameName)){
 						//Network.Connect(HostData[] hostData);
-						Network.Connect(hostData[i]);
+						Network.Connect(hostData[i].ip[0], 25000);
 					}				
 				}		
 			}
@@ -93,7 +93,8 @@ public class NetworkingManager : MonoBehaviour {
 
 	}
 	void startServer(){
-		Network.InitializeServer (4, 25000, false);
+		bool useNat = !Network.HavePublicAddress();
+		Network.InitializeServer (2, 25000, useNat);
 		MasterServer.RegisterHost(gameName,"ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
 	}
 
