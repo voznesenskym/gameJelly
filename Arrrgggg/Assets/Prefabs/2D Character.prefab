@@ -321,7 +321,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 400002}
   bullet: {fileID: 100000, guid: 79076cfadf348844ba8d3b97b160a83c, type: 2}
   muzzleFire: {fileID: 19800000, guid: a555dd2ba6a10fb4e911399330cff58a, type: 2}
-  cooldown: 2
+  cooldown: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -439,9 +439,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_SortingLayerID: 3940858523
+  m_SortingLayerID: 1093696345
   m_Sprite: {fileID: 21300000, guid: 8fb98a6035269e64a998f9b56828fc4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

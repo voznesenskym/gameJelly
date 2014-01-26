@@ -50,7 +50,7 @@ public class WeaponFire : MonoBehaviour {
 	}
 	
 	private void UpdateCooldown() {
-		_cooldownTimer	+=	Time.fixedDeltaTime;
+		_cooldownTimer	+=	Time.deltaTime;
 		if (_cooldownTimer > cooldown) {
 			OffCooldown();
 		}
