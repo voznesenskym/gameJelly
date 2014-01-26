@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 
 public class NetworkingManager : Photon.MonoBehaviour {
-	public string spawnObject = "2D Character";
+	public string spawnObject = "2dSmoothingTest";
 	public Transform spawnPosition;
 	public int connectionsAllowed = 4, portNumber = 5843;
 
@@ -60,7 +60,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 			}
 			if (hostDataExists) {
 				for (int i = 0; i < roomInfo.Length; i++) {
-					if (GUI.Button(new Rect(buttonX, buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), roomInfo[i].name)){
+					if (GUI.Button(new Rect(buttonX + (80 * i), buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), roomInfo[i].name)){
 						PhotonNetwork.JoinRoom(roomInfo[i].name);
 					}				
 				}		

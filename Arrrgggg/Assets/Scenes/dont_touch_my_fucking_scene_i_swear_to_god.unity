@@ -686,6 +686,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 298782240}
   - 114: {fileID: 298782239}
+  - 114: {fileID: 298782242}
+  - 114: {fileID: 298782241}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -719,6 +721,43 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &298782241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 298782238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e029b362086594f899f78304418940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHealth: {fileID: 689077650}
+  rightHealth: {fileID: 970507936}
+  leftHats: []
+  rightHats: []
+  view: {fileID: 298782242}
+  IsRightPlayer: 0
+--- !u!114 &298782242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 298782238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subId: 5
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  observed: {fileID: 0}
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  instantiationId: 0
 --- !u!1 &325373079
 GameObject:
   m_ObjectHideFlags: 0
