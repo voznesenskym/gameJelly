@@ -20,6 +20,9 @@ public class PlatformerCharacter2D : MonoBehaviour
 	float ceilingRadius = .01f;							// Radius of the overlap circle to determine if the player can stand up
 	Animator anim;										// Reference to the player's animator component.
 
+	public bool IsFacingRight {
+		get	{ return facingRight; }
+	}
 
     void Awake()
 	{

@@ -3,8 +3,17 @@ using System.Collections;
 
 public class DragAndDrop : MonoBehaviour {
 
+	public GameObject grabGuide;
+
 	private bool _currentlyHoldingSomething;
 	private Transform _heldThing;
+
+	void FixedUpdate() {
+		if(_currentlyHoldingSomething)
+		{
+			_heldThing.rigidbody.AddForce((grabGuide.transform.position - _heldThing.position) * 100);
+		}
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -12,7 +21,8 @@ public class DragAndDrop : MonoBehaviour {
 		{
 			if(_currentlyHoldingSomething)
 			{
-				_heldThing.gameObject.AddComponent<Rigidbody>();
+				_heldThing.rigidbody.useGravity = true;
+				//_heldThing.gameObject.AddComponent<Rigidbody>();
 				_heldThing.parent = null;
 				_currentlyHoldingSomething = false;
 			}
@@ -29,10 +39,9 @@ public class DragAndDrop : MonoBehaviour {
 					{
 						_heldThing = hit.transform;
 						_heldThing.parent = transform;
-						Destroy(_heldThing.rigidbody);
+						_heldThing.rigidbody.useGravity = false;
+						//Destroy(_heldThing.rigidbody);
 						_currentlyHoldingSomething = true;
-
-						//hit.rigidbody.AddForce(camera.transform.forward * 30);
 					}
 				}
 			}
