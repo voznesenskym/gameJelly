@@ -5,7 +5,7 @@ using System.Linq;
 public class NetworkingManager : MonoBehaviour {
 	public GameObject spawnObject;
 	public Transform spawnPosition;
-
+	public int connectionsAllowed = 4, portNumber = 2300;
 
 	PlatformerCharacter2D character;
 
@@ -62,16 +62,16 @@ public class NetworkingManager : MonoBehaviour {
 			if (GUI.Button (new Rect (buttonX, buttonY, buttonWidth, buttonHeight), "Start Server")) {
 				Debug.Log ("Starting Server");
 				startServer();
-			};
+			}
 			if (GUI.Button (new Rect (buttonX, buttonY * 2 + buttonHeight, buttonWidth, buttonHeight), "Refresh Host")) {
 				Debug.Log ("Refresh");
 				refreshHostList();
-			};
+			}
 			if (hostDataExists) {
 				for (int i = 0; i < hostData.Length; i++) {
 					if (GUI.Button(new Rect(buttonX, buttonY * 2 + buttonHeight * 2 , buttonWidth, buttonHeight), hostData[i].gameName)){
 						//Network.Connect(HostData[] hostData);
-						Network.Connect(hostData[i].ip[0], 25000);
+						Network.Connect(hostData[i]);
 					}				
 				}		
 			}
@@ -94,7 +94,7 @@ public class NetworkingManager : MonoBehaviour {
 	}
 	void startServer(){
 		bool useNat = !Network.HavePublicAddress();
-		Network.InitializeServer (2, 25000, useNat);
+		Network.InitializeServer (connectionsAllowed, portNumber, useNat);
 		MasterServer.RegisterHost(gameName,"ARRGHHHH!", "Game Jam 2014 creation. MV, MR, AB, JR");
 	}
 
