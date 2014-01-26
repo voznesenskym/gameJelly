@@ -7,6 +7,8 @@ public class NetworkingManager : MonoBehaviour {
 	public Transform spawnPosition;
 	public int connectionsAllowed = 4, portNumber = 5843;
 
+	private string myExtIP = "";
+
 	PlatformerCharacter2D character;
 
 	float buttonWidth;
@@ -38,6 +40,8 @@ public class NetworkingManager : MonoBehaviour {
 		spawnPositionPoint0 = spawnPosition.position;
 		spawnPositionPoint1 = new Vector3 (spawnPosition.position.x + 5.0f, spawnPosition.position.y, spawnPosition.position.z);
 		spawnPositionPoint2 = new Vector3 (spawnPosition.position.x + 10.0f, spawnPosition.position.y, spawnPosition.position.z);
+
+		StartCoroutine(CheckIP());
 
 	}
 
@@ -162,11 +166,11 @@ public class NetworkingManager : MonoBehaviour {
 		}
 	}
 
-	string CheckIP(){
+	IEnumerator CheckIP(){
 		myExtIPWWW = WWW("http://checkip.dyndns.org");
 		if(myExtIPWWW==null) return;
 		yield myExtIPWWW;
-		string myExtIP=myExtIPWWW.data;
+		myExtIP=myExtIPWWW.data;
 		myExtIP=myExtIP.Substring(myExtIP.IndexOf(":")+1);
 		myExtIP=myExtIP.Substring(0,myExtIP.IndexOf("<"));
 		
