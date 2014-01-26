@@ -27,4 +27,5 @@ MonoBehaviour:
   - RemoveBullet
   - RegisterPlayerLives
   - SetPlayer
+  - RemoveLife
   DisableAutoOpenWizard: 0
