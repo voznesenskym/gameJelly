@@ -167,9 +167,9 @@ public class NetworkingManager : MonoBehaviour {
 	}
 
 	IEnumerator CheckIP(){
-		myExtIPWWW = WWW("http://checkip.dyndns.org");
-		if(myExtIPWWW==null) return;
-		yield myExtIPWWW;
+		WWW myExtIPWWW = new WWW("http://checkip.dyndns.org");
+		if(myExtIPWWW==null) yield break;
+		yield return myExtIPWWW;
 		myExtIP=myExtIPWWW.data;
 		myExtIP=myExtIP.Substring(myExtIP.IndexOf(":")+1);
 		myExtIP=myExtIP.Substring(0,myExtIP.IndexOf("<"));
