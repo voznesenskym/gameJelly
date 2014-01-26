@@ -8,6 +8,8 @@ public class SetParticleSortingLayer2D : EditorWindow {
 		GameObject selection = Selection.activeObject as GameObject;
 		if (selection.particleSystem) {
 			selection.particleSystem.renderer.sortingLayerName = "Foreground";
+		}else {
+			selection.renderer.sortingLayerName = "Foreground";
 		}
 	}
 }

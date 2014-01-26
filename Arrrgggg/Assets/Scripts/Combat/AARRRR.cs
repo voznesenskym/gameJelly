@@ -5,7 +5,7 @@ using System.Collections;
 public class AARRRR : MonoBehaviour {
 	
 	public	float	lifetime		=	4f;
-	public	float	speed			=	1f;
+	public	float	speed			=	100f;
 	
 	private	float		_lifetimeTimer	=	0f;
 	private NetworkView	_view;
@@ -29,7 +29,7 @@ public class AARRRR : MonoBehaviour {
 	}
 	
 	void UpdateLifetime() {
-		_lifetimeTimer += Time.fixedDeltaTime;
+		_lifetimeTimer += Time.deltaTime;
 		
 		if (_lifetimeTimer > lifetime) {
 			Destroy(gameObject);
@@ -37,7 +37,7 @@ public class AARRRR : MonoBehaviour {
 	}
 	
 	void Move() {
-		transform.Translate(transform.right * speed * Time.fixedDeltaTime, Space.World);
+		transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision) {
