@@ -75,7 +75,7 @@ public class NetworkingManager : Photon.MonoBehaviour {
 					// TODO on server close clean up everyone
 				}
 
-				PhotonNetwork.Disconnect();
+				PhotonNetwork.LeaveRoom();
 				Cleanup();
 			};
 		}
