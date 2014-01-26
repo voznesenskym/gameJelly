@@ -42,7 +42,7 @@ public class LifeManager : Singleton<LifeManager> {
 
 		if (_leftPlayerId == id || _rightPlayerId == id) return;
 
-		//view.RPC("SetPlayer", PhotonTargets.AllBuffered, {IsRightPlayer, id});
+		view.RPC("SetPlayer", PhotonTargets.AllBuffered, new object[] {IsRightPlayer, id});
 	}
 
 	[RPC]
