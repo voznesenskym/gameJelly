@@ -35,12 +35,13 @@ public class LifeManager : Singleton<LifeManager> {
 	}
 
 	public void RegisterPlayerLives() {
-		GameObject go = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<PhotonView>().isMine == true)
+		GameObject go = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<PhotonView>() && p.GetComponent<PhotonView>().isMine == true)
 			.Select(p => p).FirstOrDefault ();
 
-		int id = go.GetInstanceID();
-
-		view.RPC("SetPlayer", PhotonTargets.AllBuffered, new object[] {IsRightPlayer, id});
+		if (go) {
+			int id = go.GetInstanceID();
+			view.RPC("SetPlayer", PhotonTargets.AllBuffered, new object[] {IsRightPlayer, id});
+		}
 	}
 
 	public void RemoveLifeFrom(int id) {

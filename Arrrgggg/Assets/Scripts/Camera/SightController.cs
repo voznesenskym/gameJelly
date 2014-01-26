@@ -11,7 +11,8 @@ public class SightController : MonoBehaviour {
 
 	void Update() {
 		if (!player) {
-			player = GameObject.FindGameObjectsWithTag("Player").Where(p => p.GetComponent<PhotonView>().isMine == true).Select(p => p).FirstOrDefault();
+			GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+			if (players != null && players.Length > 0) player = players.Where(p => p.GetComponent<PhotonView>() != null && p.GetComponent<PhotonView>().isMine == true).Select(p => p).FirstOrDefault();
 			if (player) mat = player.GetComponentInChildren<BlindnessMatUpdater>();
 		}
 	}

@@ -113,13 +113,13 @@ public class NetworkingManager : Photon.MonoBehaviour {
 		showDisconnectButton ();
 		int randomSpawn = Random.Range (0, 3);
 		if (randomSpawn == 0) {
-			myPlayerGo = (GameObject)Instantiate (objectToSpawn, spawnPositionPoint0, Quaternion.identity);
+			myPlayerGo = (GameObject)PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint0, Quaternion.identity, 0);
 			turnStuffOnAtInstantiationOfPlayer();
 		} else if (randomSpawn == 1){
-			myPlayerGo = (GameObject)Instantiate (objectToSpawn, spawnPositionPoint1, Quaternion.identity);
+			myPlayerGo = (GameObject)PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint1, Quaternion.identity, 0);
 			turnStuffOnAtInstantiationOfPlayer();
 		} else if (randomSpawn == 2){
-			myPlayerGo = (GameObject)Instantiate (objectToSpawn, spawnPositionPoint2, Quaternion.identity);
+			myPlayerGo = (GameObject)PhotonNetwork.Instantiate (spawnObject, spawnPositionPoint2, Quaternion.identity, 0);
 			turnStuffOnAtInstantiationOfPlayer();
 		}
 
