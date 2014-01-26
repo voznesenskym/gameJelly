@@ -9,11 +9,6 @@ public class SightController : MonoBehaviour {
 	public GameObject player;
 	public BlindnessMatUpdater mat;
 
-	void Start()
-	{
-		ResetSight();
-	}
-
 	void Update() {
 		if (!player) {
 			GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
