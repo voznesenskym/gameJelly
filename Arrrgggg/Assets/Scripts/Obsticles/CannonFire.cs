@@ -29,11 +29,11 @@ public class CannonFire : MonoBehaviour {
 		cannonBlast.Play();
 
 		GameObject go = (GameObject)PhotonNetwork.Instantiate("CannonBall", _transform.position, _transform.rotation, 0);
-		StartCoroutine(ReallyFireCannon(go));
+		gameObject.GetPhotonView().RPC("ReallyFireCannon", PhotonTargets.All, new object[] {go});
 	}
 
-	private IEnumerator ReallyFireCannon(GameObject go) {
-		yield return null;
+	[RPC]
+	private void ReallyFireCannon(GameObject go) {
 		go.rigidbody.AddForce(go.transform.forward * FIRE_FORCE);
 	}
 }
