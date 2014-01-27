@@ -29,10 +29,10 @@ public class CannonFire : MonoBehaviour {
 		cannonBlast.Play();
 
 		GameObject go = (GameObject)PhotonNetwork.Instantiate("CannonBall", _transform.position, _transform.rotation, 0);
-		StartCoroutine(ReallyFireCannon());
+		StartCoroutine(ReallyFireCannon(go));
 	}
 
-	private IEnumerator ReallyFireCannon() {
+	private IEnumerator ReallyFireCannon(GameObject go) {
 		yield return null;
 		go.rigidbody.AddForce(go.transform.forward * FIRE_FORCE);
 	}
