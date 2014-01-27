@@ -8,7 +8,7 @@ public class CannonFire : MonoBehaviour {
 	private const float FIRE_FORCE = 500.0f;
 
 	private Transform _transform;
-	
+	private GameObject _go;
 	void Awake() {
 		_transform = transform;
 	}
@@ -28,12 +28,12 @@ public class CannonFire : MonoBehaviour {
 	private void FireCannon() {
 		cannonBlast.Play();
 
-		GameObject go = (GameObject)PhotonNetwork.Instantiate("CannonBall", _transform.position, _transform.rotation, 0);
-		gameObject.GetPhotonView().RPC("ReallyFireCannon", PhotonTargets.All, new object[] {go});
+		_go = (GameObject)PhotonNetwork.Instantiate("CannonBall", _transform.position, _transform.rotation, 0);
+		gameObject.GetPhotonView().RPC("ReallyFireCannon", PhotonTargets.All);
 	}
 
 	[RPC]
-	private void ReallyFireCannon(GameObject go) {
-		go.rigidbody.AddForce(go.transform.forward * FIRE_FORCE);
+	public void ReallyFireCannon() {
+		_go.rigidbody.AddForce(_go.transform.forward * FIRE_FORCE);
 	}
 }
